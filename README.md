@@ -45,10 +45,10 @@ public PlantVillage and PlantDoc images, which are not redistributed here.
 ## Recomputing the results (CPU, no images needed)
 
 ```bash
-pip install -r code/requirements.txt scipy matplotlib
+pip install numpy scipy matplotlib scikit-learn     # the aggregation scripts need neither PyTorch nor the images
 python scripts/analysis/aggregate_table1.py results/remote/exp2 results/remote/exp2-ours results/remote/exp2-adabn \
-       --out results/exp-2-table1.json --md results/exp-2-table1.md        # Table 1, Tables S3–S6
-python scripts/analysis/aggregate_table2.py results/remote --out results/exp-3-4-table2.json --md results/exp-3-4-table2.md   # Table 2
+       --out results/exp-2-table1.json --md results/exp-2-table1.md        # Table 1; Tables S3–S5, S12
+python scripts/analysis/aggregate_table2.py results/remote --out results/exp-3-4-table2.json --md results/exp-3-4-table2.md   # Table 2, Table S6
 python scripts/analysis/offline_inference_analyses.py --out results/exp-offline-inference.json   # Tables 3–4, Figs 4–5, Section 4.6
 python scripts/analysis/exp9_10.py results/remote/exp9-10 --out results/exp-9-10.json            # Tables S8–S9
 python scripts/analysis/exp5_leakage_effect.py results/remote/exp-final --out results/exp-5-leakage-effect.json
@@ -68,6 +68,9 @@ python -m src.train --config configs/cd_apdm.yaml --seed 0
 python -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint <run dir>/cd_apdm_bestval.pt
 python -m src.baselines.run --method source_only --seed 0
 ```
+
+Training needs `code/requirements.txt`; the leakage audit (`scripts/analysis/exp5_*.py`)
+additionally needs `imagehash`.
 
 The line of `scripts/queues/<queue>.tsv` named after a run directory in
 `results/remote/<queue>/` is the command that produced it, with `$PY` the Python
