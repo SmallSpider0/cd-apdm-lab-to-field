@@ -1,0 +1,49 @@
+{
+  "method": "cotta",
+  "seed": 0,
+  "smoke": false,
+  "usable_for_paper": true,
+  "selection": {
+    "final": {
+      "epoch": 1,
+      "tgt": {
+        "top1": 15.58846453624318,
+        "tail_recall": 5.9658376612521105,
+        "macro_f1": 12.951156426392133,
+        "ece": 0.458102267459093
+      },
+      "src_val": {
+        "top1": 98.71428571428571,
+        "tail_recall": 98.00000000000001,
+        "macro_f1": 98.71930992385944,
+        "ece": 0.01025490111538347
+      }
+    },
+    "best_source_val": {
+      "epoch": 1,
+      "tgt": {
+        "top1": 15.58846453624318,
+        "tail_recall": 5.9658376612521105,
+        "macro_f1": 12.951156426392133,
+        "ece": 0.458102267459093
+      },
+      "src_val": {
+        "top1": 98.71428571428571,
+        "tail_recall": 98.00000000000001,
+        "macro_f1": 98.71930992385944,
+        "ece": 0.01025490111538347
+      }
+    }
+  },
+  "hyperparameters": {
+    "lr": 0.001,
+    "mt": 0.999,
+    "rst": 0.01,
+    "ap": 0.72,
+    "n_aug": 32
+  },
+  "wall_clock_s": 109.7,
+  "init_from": "/root/data1/xzc/agri-cnz/runs/exp2/cotta-s0/../source_only-s0",
+  "init_ckpt": "bestval",
+  "init_epoch": 61
+}

@@ -1,0 +1,24 @@
+{
+ "task": "4b.6",
+ "purpose": "本机验证新数据层：划分文件 → DataLoader → 模型前向",
+ "env": {"conda_env": "agri-ctta", "python": "3.11.15", "torch": "2.12.0",
+         "torchvision": "0.27.0", "device": "mps", "machine": "Apple M4 / 16 GB"},
+ "note": "复用本机已有环境，未重复安装 PyTorch；仅补装 imagehash（任务 5 近重复检测用）",
+ "datasets": {
+  "source_train": 21316, "source_val": 2372, "target": 2566,
+  "num_classes": 28,
+  "buckets": {"many": 18, "medium": 7, "few": 3},
+  "tail_classes": 10,
+  "train_class_counts": {"max": 4821, "min": 10, "imbalance_factor": 482.1},
+  "tail_sample_counts": {"source_train": 337, "target": 844}
+ },
+ "checks": {
+  "split_files_resolve_to_existing_images": true,
+  "val_covers_all_classes": true,
+  "batch_shapes_ok": true,
+  "model_forward_ok": "logits (8, 28)",
+  "agrinet_strict_raises_on_unknown_id": true,
+  "temporal_disabled_by_default": true
+ },
+ "conclusion": "流水线在本机 MPS 上跑通。主基准 use_temporal=False，时序分支不参与。"
+}

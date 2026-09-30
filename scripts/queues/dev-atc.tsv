@@ -1,0 +1,2 @@
+atc_source	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m tools.atc_estimate --config configs/cd_apdm.yaml --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --out $RUN_DIR/atc.json
+atc_adabn	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m tools.atc_estimate --config configs/cd_apdm.yaml --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --adabn --out $RUN_DIR/atc.json

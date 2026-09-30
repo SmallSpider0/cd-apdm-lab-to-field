@@ -1,0 +1,28 @@
+{
+ "task": "4b.7",
+ "purpose": "train.py / inference.py 改用划分文件；端到端冒烟验证",
+ "env": {"conda_env": "agri-ctta", "torch": "2.12.0", "device": "mps", "machine": "Apple M4 / 16 GB"},
+ "smoke": {
+  "config": "code/configs/local_smoke.yaml",
+  "train": {"ok": true, "peak_rss_gb": 1.0,
+            "loaded": "source train 21316 / val 2372 / target 2566, 28 类",
+            "buckets": "many=18 tail=10", "metrics_are_real_numbers": true},
+  "inference": {"ok": true, "peak_rss_gb": 0.9,
+                "iters_from_config": {"ccgan": 5, "ssplam": 5, "mt": 5},
+                "output": {"top1": 2.77, "tail_recall": 10.23, "macro_f1": 3.64, "ece": 0.526}}
+ },
+ "note": "冒烟数值接近随机（28 类随机基线 3.6%），仅证明接线正确，不可用于论文。",
+ "config_keys_fixed": {
+  "problem": "10 个配置键从不被代码读取，其中 cc_ganm.num_iters 尤其危险——实际迭代数由命令行硬编码的 200 决定，而配置会被原样存进 checkpoint 作为运行记录，造成记录与实际不符",
+  "wired": ["cc_ganm.num_iters", "ss_plam.iters", "ss_plam.mean_teacher_iters",
+            "ss_plam.rotation_weight", "ss_plam.contrastive_weight",
+            "train.optimizer", "train.scheduler", "train.warmup_epochs",
+            "tfem.lstm_layers", "data.source_split", "data.target_split"],
+  "removed": ["ss_plam.warmup_iters（代码中从无对应实现）"],
+  "remaining_dead_keys": 0
+ },
+ "guards_added": [
+  "guard_local_resources()：在 MPS/CPU 上以较重设置启动时给出明确提示",
+  "configs/local_smoke.yaml：batch 8、CC-GANM 关闭、各迭代数压至 5"
+ ]
+}

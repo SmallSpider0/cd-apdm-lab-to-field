@@ -1,0 +1,4 @@
+{"run_id": "exp2/dann-s0", "queue": "exp2", "repo_commit": "766a13c",
+ "command": "$PY -m src.baselines.run --method dann --seed 0 --num_workers 6", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-22T13:32:11+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

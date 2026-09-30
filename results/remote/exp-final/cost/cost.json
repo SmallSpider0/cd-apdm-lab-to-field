@@ -1,0 +1,32 @@
+{
+ "gpu": "NVIDIA RTX A6000",
+ "input": [
+  1,
+  3,
+  224,
+  224
+ ],
+ "rows": {
+  "resnet50": {
+   "params_M": 25.634908,
+   "gflops": 8.17852416,
+   "median_ms": 4.333630204200745,
+   "mean_ms": 4.345616210252047
+  },
+  "swin_b": {
+   "params_M": 87.282388,
+   "gflops": 30.86092288,
+   "median_ms": 16.293752938508987,
+   "mean_ms": 16.512608282268047
+  },
+  "cd_apdm": {
+   "params_M": 25.634909,
+   "gflops": 8.17852416,
+   "median_ms": 4.597937688231468,
+   "mean_ms": 4.618117388337851,
+   "params_M_all_modules_incl_disabled_temporal": 59.551069,
+   "adabn_one_time_s": 4.337532628327608,
+   "adabn_images": 2566
+  }
+ }
+}

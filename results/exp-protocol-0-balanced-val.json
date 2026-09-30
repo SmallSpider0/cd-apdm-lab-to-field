@@ -1,0 +1,258 @@
+{
+ "task": "fix-experiment-protocol 0.1–0.2 均衡源域验证集",
+ "decision": "2026-09-21：主结果按源域验证集选型；验证集改为 LT 剩余图像构建的均衡集（推荐方案）",
+ "seed": "20260920-balanced-val",
+ "val_per_class": 50,
+ "grouping": {
+  "near_dup": "phash 256 位，D4 最小汉明距离 ≤ 16",
+  "same_leaf": "文件名 Leaf <n> + 批次前缀",
+  "rule": "验证图所在组不含任何训练图；每组至多一张入验证集"
+ },
+ "previous_val": {
+  "construction": "LT 保留集按 10% 比例切分",
+  "images": 2323,
+  "issue": "继承长尾分布，最小类 1 张；在其上选型偏向头部类，且占用尾类训练样本"
+ },
+ "result": {
+  "train": 23488,
+  "val": 1400,
+  "val_from_remainder": 1200,
+  "val_from_kept": 200,
+  "classes_topped_up_from_kept": [
+   "Squash___Powdery_mildew",
+   "Tomato___Bacterial_spot",
+   "Tomato___Late_blight",
+   "Tomato___Tomato_Yellow_Leaf_Curl_Virus"
+  ],
+  "train_imbalance_factor": 482.5,
+  "train_min_class": 11,
+  "train_max_class": 5307
+ },
+ "selection_metric": "验证集 Top-1；因验证集类别均衡，等于类别平均准确率",
+ "per_class": {
+  "Apple___Apple_scab": {
+   "bucket": "medium",
+   "lt_kept": 54,
+   "remainder_available": 576,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 54
+  },
+  "Apple___Cedar_apple_rust": {
+   "bucket": "few",
+   "lt_kept": 11,
+   "remainder_available": 264,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 11
+  },
+  "Apple___healthy": {
+   "bucket": "many",
+   "lt_kept": 1070,
+   "remainder_available": 575,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 1070
+  },
+  "Blueberry___healthy": {
+   "bucket": "many",
+   "lt_kept": 675,
+   "remainder_available": 827,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 675
+  },
+  "Cherry_(including_sour)___healthy": {
+   "bucket": "medium",
+   "lt_kept": 68,
+   "remainder_available": 786,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 68
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+   "bucket": "medium",
+   "lt_kept": 43,
+   "remainder_available": 470,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 43
+  },
+  "Corn_(maize)___Common_rust_": {
+   "bucket": "many",
+   "lt_kept": 426,
+   "remainder_available": 766,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 426
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+   "bucket": "many",
+   "lt_kept": 107,
+   "remainder_available": 878,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 107
+  },
+  "Grape___Black_rot": {
+   "bucket": "many",
+   "lt_kept": 338,
+   "remainder_available": 842,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 338
+  },
+  "Grape___healthy": {
+   "bucket": "medium",
+   "lt_kept": 27,
+   "remainder_available": 396,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 27
+  },
+  "Peach___healthy": {
+   "bucket": "few",
+   "lt_kept": 13,
+   "remainder_available": 347,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 13
+  },
+  "Pepper,_bell___Bacterial_spot": {
+   "bucket": "many",
+   "lt_kept": 135,
+   "remainder_available": 862,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 135
+  },
+  "Pepper,_bell___healthy": {
+   "bucket": "many",
+   "lt_kept": 536,
+   "remainder_available": 942,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 536
+  },
+  "Potato___Early_blight": {
+   "bucket": "many",
+   "lt_kept": 269,
+   "remainder_available": 731,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 269
+  },
+  "Potato___Late_blight": {
+   "bucket": "many",
+   "lt_kept": 214,
+   "remainder_available": 786,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 214
+  },
+  "Raspberry___healthy": {
+   "bucket": "few",
+   "lt_kept": 17,
+   "remainder_available": 354,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 17
+  },
+  "Soybean___healthy": {
+   "bucket": "many",
+   "lt_kept": 4256,
+   "remainder_available": 834,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 4256
+  },
+  "Squash___Powdery_mildew": {
+   "bucket": "many",
+   "lt_kept": 1835,
+   "remainder_available": 0,
+   "val_from_remainder": 0,
+   "val_from_kept": 50,
+   "train": 1785
+  },
+  "Strawberry___healthy": {
+   "bucket": "medium",
+   "lt_kept": 34,
+   "remainder_available": 422,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 34
+  },
+  "Tomato___Bacterial_spot": {
+   "bucket": "many",
+   "lt_kept": 2127,
+   "remainder_available": 0,
+   "val_from_remainder": 0,
+   "val_from_kept": 50,
+   "train": 2077
+  },
+  "Tomato___Early_blight": {
+   "bucket": "many",
+   "lt_kept": 170,
+   "remainder_available": 830,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 170
+  },
+  "Tomato___Late_blight": {
+   "bucket": "many",
+   "lt_kept": 1909,
+   "remainder_available": 0,
+   "val_from_remainder": 0,
+   "val_from_kept": 50,
+   "train": 1859
+  },
+  "Tomato___Leaf_Mold": {
+   "bucket": "medium",
+   "lt_kept": 85,
+   "remainder_available": 867,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 85
+  },
+  "Tomato___Septoria_leaf_spot": {
+   "bucket": "many",
+   "lt_kept": 1695,
+   "remainder_available": 76,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 1695
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+   "bucket": "many",
+   "lt_kept": 1346,
+   "remainder_available": 330,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 1346
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+   "bucket": "many",
+   "lt_kept": 5357,
+   "remainder_available": 0,
+   "val_from_remainder": 0,
+   "val_from_kept": 50,
+   "train": 5307
+  },
+  "Tomato___Tomato_mosaic_virus": {
+   "bucket": "medium",
+   "lt_kept": 21,
+   "remainder_available": 352,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 21
+  },
+  "Tomato___healthy": {
+   "bucket": "many",
+   "lt_kept": 850,
+   "remainder_available": 741,
+   "val_from_remainder": 50,
+   "val_from_kept": 0,
+   "train": 850
+  }
+ }
+}

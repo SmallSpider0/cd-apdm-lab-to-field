@@ -1,0 +1,4 @@
+{"run_id": "dev-stages/stages_full", "queue": "dev-stages", "repo_commit": "276e2c9",
+ "command": "cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --dump_stages --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-22T11:35:44+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

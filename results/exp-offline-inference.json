@@ -1,0 +1,1266 @@
+{
+ "tail_classes": [
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27
+ ],
+ "class_names": [
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+  "Soybean___healthy",
+  "Tomato___Bacterial_spot",
+  "Tomato___Late_blight",
+  "Squash___Powdery_mildew",
+  "Tomato___Septoria_leaf_spot",
+  "Tomato___Spider_mites Two-spotted_spider_mite",
+  "Apple___healthy",
+  "Tomato___healthy",
+  "Blueberry___healthy",
+  "Pepper,_bell___healthy",
+  "Corn_(maize)___Common_rust_",
+  "Grape___Black_rot",
+  "Potato___Early_blight",
+  "Potato___Late_blight",
+  "Tomato___Early_blight",
+  "Pepper,_bell___Bacterial_spot",
+  "Corn_(maize)___Northern_Leaf_Blight",
+  "Tomato___Leaf_Mold",
+  "Cherry_(including_sour)___healthy",
+  "Apple___Apple_scab",
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+  "Strawberry___healthy",
+  "Grape___healthy",
+  "Tomato___Tomato_mosaic_virus",
+  "Raspberry___healthy",
+  "Peach___healthy",
+  "Apple___Cedar_apple_rust"
+ ],
+ "class_names_pretty": [
+  "Tomato yellow leaf curl virus",
+  "Soybean healthy",
+  "Tomato bacterial spot",
+  "Tomato late blight",
+  "Squash powdery mildew",
+  "Tomato septoria leaf spot",
+  "Tomato spider mites two-spotted spider mite",
+  "Apple healthy",
+  "Tomato healthy",
+  "Blueberry healthy",
+  "Pepper bell healthy",
+  "Corn common rust",
+  "Grape black rot",
+  "Potato early blight",
+  "Potato late blight",
+  "Tomato early blight",
+  "Pepper bell bacterial spot",
+  "Corn northern leaf blight",
+  "Tomato leaf mold",
+  "Cherry healthy",
+  "Apple scab",
+  "Corn gray leaf spot",
+  "Strawberry healthy",
+  "Grape healthy",
+  "Tomato mosaic virus",
+  "Raspberry healthy",
+  "Peach healthy",
+  "Apple cedar rust"
+ ],
+ "check_reproduce_final_max_abs_diff": 0.0054867311945202,
+ "ours_dev_lambda_selection": {
+  "lambda": 0.5,
+  "dev_grid_seed0": [
+   {
+    "lambda": 0.0,
+    "top1": 18.67007672634271,
+    "tail_recall": 13.464079118237333,
+    "macro_f1": 16.602205015344648
+   },
+   {
+    "lambda": 0.25,
+    "top1": 19.565217391304348,
+    "tail_recall": 20.30142290284278,
+    "macro_f1": 17.96662187457936
+   },
+   {
+    "lambda": 0.5,
+    "top1": 19.948849104859335,
+    "tail_recall": 27.609447122631703,
+    "macro_f1": 18.359578499263087
+   },
+   {
+    "lambda": 0.75,
+    "top1": 17.647058823529413,
+    "tail_recall": 32.594451225282874,
+    "macro_f1": 16.03936122690395
+   },
+   {
+    "lambda": 1.0,
+    "top1": 14.194373401534527,
+    "tail_recall": 31.4800228694752,
+    "macro_f1": 11.273226045558722
+   },
+   {
+    "lambda": 1.25,
+    "top1": 13.427109974424553,
+    "tail_recall": 32.15371380178683,
+    "macro_f1": 10.265816122484434
+   },
+   {
+    "lambda": 1.5,
+    "top1": 12.787723785166241,
+    "tail_recall": 31.55805129435961,
+    "macro_f1": 9.507679236750809
+   },
+   {
+    "lambda": 1.75,
+    "top1": 11.253196930946292,
+    "tail_recall": 29.625922120851122,
+    "macro_f1": 7.547047858036892
+   },
+   {
+    "lambda": 2.0,
+    "top1": 10.869565217391305,
+    "tail_recall": 28.85279190045924,
+    "macro_f1": 7.183941241895445
+   },
+   {
+    "lambda": 2.25,
+    "top1": 10.485933503836318,
+    "tail_recall": 28.575014122681463,
+    "macro_f1": 6.881921752151587
+   },
+   {
+    "lambda": 2.5,
+    "top1": 9.846547314578006,
+    "tail_recall": 26.850415192200185,
+    "macro_f1": 6.456076629791105
+   },
+   {
+    "lambda": 2.75,
+    "top1": 9.335038363171355,
+    "tail_recall": 25.937716779501773,
+    "macro_f1": 6.099545456994897
+   },
+   {
+    "lambda": 3.0,
+    "top1": 8.951406649616368,
+    "tail_recall": 24.83892093932662,
+    "macro_f1": 5.923752812353147
+   },
+   {
+    "lambda": 3.25,
+    "top1": 8.439897698209718,
+    "tail_recall": 23.41034951075519,
+    "macro_f1": 4.9714013376416455
+   },
+   {
+    "lambda": 3.5,
+    "top1": 8.184143222506394,
+    "tail_recall": 22.519083913607236,
+    "macro_f1": 4.915996936388717
+   },
+   {
+    "lambda": 3.75,
+    "top1": 8.312020460358056,
+    "tail_recall": 22.57899676763774,
+    "macro_f1": 4.960890258090513
+   },
+   {
+    "lambda": 4.0,
+    "top1": 7.8005115089514065,
+    "tail_recall": 21.54725073589171,
+    "macro_f1": 4.502109471466635
+   }
+  ]
+ },
+ "rectification_vs_lambda": {
+  "setting": "gamma=0, lambda=0.75 vs reported (lambda=0.5, gamma=0.005)",
+  "top1": {
+   "reported": 16.63863976083707,
+   "alternative": 16.56390134529148,
+   "p_paired_t": 0.5085437074528387
+  },
+  "tail_recall": {
+   "reported": 26.741739455824924,
+   "alternative": 27.097326819061248,
+   "p_paired_t": 0.14895023287268314
+  },
+  "macro_f1": {
+   "reported": 15.040537095225778,
+   "alternative": 14.958326291554698,
+   "p_paired_t": 0.6099342127238105
+  },
+  "ece": {
+   "reported": 0.2648034056245192,
+   "alternative": 0.2551964633308533,
+   "p_paired_t": 0.00027014545259970333
+  }
+ },
+ "table4_tau": {
+  "0.0": {
+   "top1": {
+    "mean": 17.731689088191327,
+    "std": 0.7908687622840868
+   },
+   "tail_recall": {
+    "mean": 16.522458513568,
+    "std": 2.095639551191314
+   },
+   "macro_f1": {
+    "mean": 16.053575902617627,
+    "std": 0.942767835393696
+   },
+   "ece": {
+    "mean": 0.2747705944075352,
+    "std": 0.023570836950501967
+   }
+  },
+  "0.25": {
+   "top1": {
+    "mean": 17.843796711509714,
+    "std": 0.8895912390964991
+   },
+   "tail_recall": {
+    "mean": 22.608169584797754,
+    "std": 1.897708296845965
+   },
+   "macro_f1": {
+    "mean": 16.37116358358827,
+    "std": 0.7806081339881622
+   },
+   "ece": {
+    "mean": 0.25260965006865904,
+    "std": 0.03191323768144852
+   }
+  },
+  "0.5": {
+   "top1": {
+    "mean": 16.63863976083707,
+    "std": 0.9705028594343543
+   },
+   "tail_recall": {
+    "mean": 26.741739455824924,
+    "std": 2.288691508873749
+   },
+   "macro_f1": {
+    "mean": 15.040537095225778,
+    "std": 0.8278237379303425
+   },
+   "ece": {
+    "mean": 0.2648034056245192,
+    "std": 0.03160425841665824
+   }
+  },
+  "0.75": {
+   "top1": {
+    "mean": 14.910313901345292,
+    "std": 0.8283835516552082
+   },
+   "tail_recall": {
+    "mean": 28.8425689545401,
+    "std": 1.807535128029047
+   },
+   "macro_f1": {
+    "mean": 12.865349631237462,
+    "std": 0.8561027500849451
+   },
+   "ece": {
+    "mean": 0.2992107606792264,
+    "std": 0.028794709004682374
+   }
+  },
+  "1.0": {
+   "top1": {
+    "mean": 13.527653213751869,
+    "std": 0.9809683959639903
+   },
+   "tail_recall": {
+    "mean": 29.480403940456757,
+    "std": 1.830429728996364
+   },
+   "macro_f1": {
+    "mean": 11.020116065691148,
+    "std": 1.2130196773548656
+   },
+   "ece": {
+    "mean": 0.3362385453142427,
+    "std": 0.026915105030484443
+   }
+  }
+ },
+ "table4_gamma": {
+  "0.0": {
+   "top1": {
+    "mean": 17.918535127055307,
+    "std": 0.9550007942697084
+   },
+   "tail_recall": {
+    "mean": 23.25042361584848,
+    "std": 2.3869105171248854
+   },
+   "macro_f1": {
+    "mean": 16.70293666214706,
+    "std": 0.8956206940644245
+   },
+   "ece": {
+    "mean": 0.24080649718061675,
+    "std": 0.03263730405838115
+   }
+  },
+  "0.0025": {
+   "top1": {
+    "mean": 17.35799701046338,
+    "std": 1.1022332738230662
+   },
+   "tail_recall": {
+    "mean": 25.777619187119285,
+    "std": 2.2485097161984573
+   },
+   "macro_f1": {
+    "mean": 15.899967895179813,
+    "std": 1.0109752954443587
+   },
+   "ece": {
+    "mean": 0.2513250691744375,
+    "std": 0.0325160251342577
+   }
+  },
+  "0.005": {
+   "top1": {
+    "mean": 16.63863976083707,
+    "std": 0.9705028594343543
+   },
+   "tail_recall": {
+    "mean": 26.741739455824924,
+    "std": 2.288691508873749
+   },
+   "macro_f1": {
+    "mean": 15.040537095225778,
+    "std": 0.8278237379303425
+   },
+   "ece": {
+    "mean": 0.2648034056245192,
+    "std": 0.03160425841665824
+   }
+  },
+  "0.01": {
+   "top1": {
+    "mean": 15.695067264573993,
+    "std": 0.8841589306336487
+   },
+   "tail_recall": {
+    "mean": 27.88997324979057,
+    "std": 2.2858040547009786
+   },
+   "macro_f1": {
+    "mean": 13.886009252038681,
+    "std": 0.8453363589791958
+   },
+   "ece": {
+    "mean": 0.2848214709856974,
+    "std": 0.03083350410180168
+   }
+  },
+  "0.02": {
+   "top1": {
+    "mean": 14.648729446935727,
+    "std": 0.7932489110730577
+   },
+   "tail_recall": {
+    "mean": 28.785785644483852,
+    "std": 1.9491622079857724
+   },
+   "macro_f1": {
+    "mean": 12.589961642534567,
+    "std": 0.9164897017280996
+   },
+   "ece": {
+    "mean": 0.3080913933656709,
+    "std": 0.027589495166233147
+   }
+  },
+  "0.08": {
+   "top1": {
+    "mean": 12.911061285500745,
+    "std": 0.9049985828335079
+   },
+   "tail_recall": {
+    "mean": 29.659823021320452,
+    "std": 1.4448044110797738
+   },
+   "macro_f1": {
+    "mean": 10.219193028195681,
+    "std": 1.146276080357784
+   },
+   "ece": {
+    "mean": 0.3473045065448748,
+    "std": 0.028655606671477943
+   }
+  }
+ },
+ "exp11_ece_renormalization": {
+  "gamma=0.005|renormalized": {
+   "mean": 0.2648034056245192,
+   "std": 0.03160425841665824
+  },
+  "gamma=0.005|unnormalized": {
+   "mean": 0.4301856089214162,
+   "std": 0.026407916228309642
+  },
+  "gamma=0.08|renormalized": {
+   "mean": 0.3473045065448748,
+   "std": 0.028655606671477943
+  },
+  "gamma=0.08|unnormalized": {
+   "mean": 0.8513677816738728,
+   "std": 0.01567603135923497
+  }
+ },
+ "fig4_reliability_tail": {
+  "resnet50_source_only": {
+   "tail_ece_15bins": 0.5844000077491734,
+   "bins10": [
+    {
+     "lo": 0.0,
+     "hi": 0.1,
+     "n": 0,
+     "acc": null,
+     "conf": null
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "n": 55,
+     "acc": 0.03636363636363636,
+     "conf": 0.17248646129261364
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.30000000000000004,
+     "n": 218,
+     "acc": 0.08256880733944955,
+     "conf": 0.2571898294151376
+    },
+    {
+     "lo": 0.30000000000000004,
+     "hi": 0.4,
+     "n": 276,
+     "acc": 0.050724637681159424,
+     "conf": 0.3535103175951087
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.5,
+     "n": 327,
+     "acc": 0.0764525993883792,
+     "conf": 0.4477524130351682
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.6000000000000001,
+     "n": 329,
+     "acc": 0.08206686930091185,
+     "conf": 0.5494143593275076
+    },
+    {
+     "lo": 0.6000000000000001,
+     "hi": 0.7000000000000001,
+     "n": 312,
+     "acc": 0.08653846153846154,
+     "conf": 0.6514501327123398
+    },
+    {
+     "lo": 0.7000000000000001,
+     "hi": 0.8,
+     "n": 333,
+     "acc": 0.10810810810810811,
+     "conf": 0.747706691066066
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "n": 355,
+     "acc": 0.12112676056338029,
+     "conf": 0.8554948833626761
+    },
+    {
+     "lo": 0.9,
+     "hi": 1.0,
+     "n": 1311,
+     "acc": 0.2128146453089245,
+     "conf": 0.9759844584286804
+    }
+   ],
+   "n": 3516
+  },
+  "focal_adabn_la": {
+   "tail_ece_15bins": 0.18753837998118947,
+   "bins10": [
+    {
+     "lo": 0.0,
+     "hi": 0.1,
+     "n": 170,
+     "acc": 0.07058823529411765,
+     "conf": 0.09117207097490784
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "n": 1132,
+     "acc": 0.12367491166077739,
+     "conf": 0.14620626354042632
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.30000000000000004,
+     "n": 631,
+     "acc": 0.15689381933438987,
+     "conf": 0.2427935698044666
+    },
+    {
+     "lo": 0.30000000000000004,
+     "hi": 0.4,
+     "n": 479,
+     "acc": 0.16910229645093947,
+     "conf": 0.34303963027820733
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.5,
+     "n": 260,
+     "acc": 0.20384615384615384,
+     "conf": 0.447424274594325
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.6000000000000001,
+     "n": 207,
+     "acc": 0.25120772946859904,
+     "conf": 0.5486648207430505
+    },
+    {
+     "lo": 0.6000000000000001,
+     "hi": 0.7000000000000001,
+     "n": 186,
+     "acc": 0.22043010752688172,
+     "conf": 0.6439635954067611
+    },
+    {
+     "lo": 0.7000000000000001,
+     "hi": 0.8,
+     "n": 121,
+     "acc": 0.2892561983471074,
+     "conf": 0.7487157918417783
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "n": 125,
+     "acc": 0.152,
+     "conf": 0.8442690162054094
+    },
+    {
+     "lo": 0.9,
+     "hi": 1.0,
+     "n": 205,
+     "acc": 0.24390243902439024,
+     "conf": 0.9612296599900524
+    }
+   ],
+   "n": 3516
+  },
+  "cd_apdm": {
+   "tail_ece_15bins": 0.19163780459641927,
+   "bins10": [
+    {
+     "lo": 0.0,
+     "hi": 0.1,
+     "n": 1,
+     "acc": 0.0,
+     "conf": 0.09699312257259587
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "n": 366,
+     "acc": 0.10655737704918032,
+     "conf": 0.1700918587419399
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.30000000000000004,
+     "n": 741,
+     "acc": 0.1970310391363023,
+     "conf": 0.2479950900923944
+    },
+    {
+     "lo": 0.30000000000000004,
+     "hi": 0.4,
+     "n": 629,
+     "acc": 0.2543720190779014,
+     "conf": 0.3463115756007943
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.5,
+     "n": 464,
+     "acc": 0.3254310344827586,
+     "conf": 0.44907245623032294
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.6000000000000001,
+     "n": 339,
+     "acc": 0.30383480825958703,
+     "conf": 0.5455319801896139
+    },
+    {
+     "lo": 0.6000000000000001,
+     "hi": 0.7000000000000001,
+     "n": 246,
+     "acc": 0.34146341463414637,
+     "conf": 0.6502176212661527
+    },
+    {
+     "lo": 0.7000000000000001,
+     "hi": 0.8,
+     "n": 221,
+     "acc": 0.33031674208144796,
+     "conf": 0.7456094851852528
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "n": 208,
+     "acc": 0.40865384615384615,
+     "conf": 0.8478412954886263
+    },
+    {
+     "lo": 0.9,
+     "hi": 1.0,
+     "n": 301,
+     "acc": 0.4418604651162791,
+     "conf": 0.9616756918050698
+    }
+   ],
+   "n": 3516
+  }
+ },
+ "fig5_confusion_tail": {
+  "rows_true_tail": [
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "cols": [
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   "non-tail"
+  ],
+  "counts": {
+   "resnet50_source_only": [
+    [
+     31,
+     0,
+     3,
+     2,
+     0,
+     0,
+     2,
+     0,
+     0,
+     0,
+     340
+    ],
+    [
+     2,
+     0,
+     2,
+     4,
+     5,
+     0,
+     0,
+     1,
+     6,
+     2,
+     212
+    ],
+    [
+     1,
+     0,
+     57,
+     29,
+     0,
+     0,
+     0,
+     3,
+     0,
+     9,
+     291
+    ],
+    [
+     0,
+     0,
+     0,
+     213,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     69
+    ],
+    [
+     0,
+     6,
+     1,
+     3,
+     18,
+     43,
+     0,
+     36,
+     0,
+     0,
+     295
+    ],
+    [
+     0,
+     2,
+     2,
+     0,
+     0,
+     50,
+     0,
+     1,
+     0,
+     0,
+     233
+    ],
+    [
+     9,
+     0,
+     0,
+     11,
+     0,
+     0,
+     6,
+     3,
+     0,
+     0,
+     193
+    ],
+    [
+     6,
+     0,
+     9,
+     8,
+     7,
+     7,
+     4,
+     53,
+     1,
+     0,
+     403
+    ],
+    [
+     0,
+     1,
+     0,
+     6,
+     0,
+     0,
+     2,
+     0,
+     15,
+     1,
+     437
+    ],
+    [
+     6,
+     3,
+     0,
+     66,
+     0,
+     0,
+     0,
+     0,
+     0,
+     28,
+     257
+    ]
+   ],
+   "focal_adabn_la": [
+    [
+     45,
+     0,
+     0,
+     0,
+     2,
+     7,
+     39,
+     1,
+     5,
+     33,
+     246
+    ],
+    [
+     4,
+     0,
+     0,
+     0,
+     6,
+     7,
+     36,
+     6,
+     11,
+     25,
+     139
+    ],
+    [
+     3,
+     12,
+     12,
+     0,
+     2,
+     5,
+     17,
+     4,
+     13,
+     104,
+     218
+    ],
+    [
+     2,
+     6,
+     0,
+     125,
+     0,
+     1,
+     4,
+     0,
+     5,
+     28,
+     111
+    ],
+    [
+     0,
+     18,
+     13,
+     0,
+     48,
+     62,
+     45,
+     139,
+     1,
+     13,
+     63
+    ],
+    [
+     0,
+     26,
+     7,
+     0,
+     4,
+     64,
+     39,
+     28,
+     6,
+     27,
+     87
+    ],
+    [
+     10,
+     0,
+     0,
+     0,
+     2,
+     0,
+     41,
+     2,
+     1,
+     25,
+     141
+    ],
+    [
+     6,
+     7,
+     8,
+     0,
+     18,
+     33,
+     62,
+     82,
+     11,
+     44,
+     227
+    ],
+    [
+     0,
+     5,
+     0,
+     0,
+     4,
+     1,
+     90,
+     3,
+     24,
+     19,
+     316
+    ],
+    [
+     6,
+     7,
+     1,
+     0,
+     0,
+     6,
+     6,
+     0,
+     13,
+     141,
+     180
+    ]
+   ],
+   "cd_apdm": [
+    [
+     83,
+     0,
+     2,
+     0,
+     9,
+     30,
+     43,
+     13,
+     17,
+     47,
+     134
+    ],
+    [
+     4,
+     5,
+     2,
+     4,
+     26,
+     6,
+     23,
+     10,
+     56,
+     33,
+     65
+    ],
+    [
+     8,
+     9,
+     33,
+     0,
+     14,
+     29,
+     9,
+     4,
+     53,
+     143,
+     88
+    ],
+    [
+     5,
+     12,
+     0,
+     120,
+     5,
+     0,
+     15,
+     1,
+     21,
+     58,
+     45
+    ],
+    [
+     0,
+     26,
+     15,
+     0,
+     33,
+     104,
+     17,
+     100,
+     23,
+     32,
+     52
+    ],
+    [
+     0,
+     28,
+     12,
+     0,
+     22,
+     106,
+     19,
+     14,
+     23,
+     29,
+     35
+    ],
+    [
+     21,
+     0,
+     2,
+     2,
+     7,
+     13,
+     36,
+     8,
+     1,
+     62,
+     70
+    ],
+    [
+     6,
+     15,
+     10,
+     0,
+     23,
+     61,
+     27,
+     161,
+     45,
+     55,
+     95
+    ],
+    [
+     3,
+     18,
+     4,
+     1,
+     30,
+     7,
+     25,
+     19,
+     188,
+     39,
+     128
+    ],
+    [
+     12,
+     10,
+     2,
+     0,
+     7,
+     16,
+     12,
+     1,
+     39,
+     209,
+     52
+    ]
+   ]
+  }
+ },
+ "error_analysis_tail": {
+  "n_tail_errors": 2542,
+  "n_tail": 3516,
+  "same_crop_share": 0.14083398898505115,
+  "to_non_tail_share": 0.3005507474429583,
+  "top": [
+   {
+    "true": "Apple scab",
+    "pred": "Apple cedar rust",
+    "n": 143
+   },
+   {
+    "true": "Strawberry healthy",
+    "pred": "Grape healthy",
+    "n": 104
+   },
+   {
+    "true": "Strawberry healthy",
+    "pred": "Raspberry healthy",
+    "n": 100
+   },
+   {
+    "true": "Peach healthy",
+    "pred": "Soybean healthy",
+    "n": 71
+   },
+   {
+    "true": "Tomato mosaic virus",
+    "pred": "Apple cedar rust",
+    "n": 62
+   },
+   {
+    "true": "Raspberry healthy",
+    "pred": "Grape healthy",
+    "n": 61
+   },
+   {
+    "true": "Corn gray leaf spot",
+    "pred": "Apple cedar rust",
+    "n": 58
+   },
+   {
+    "true": "Cherry healthy",
+    "pred": "Peach healthy",
+    "n": 56
+   }
+  ]
+ },
+ "table3_cases": [
+  {
+   "image_id": "train/grape leaf/grape-leaf-15796930.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Grape healthy",
+   "resnet50": {
+    "pred": "Apple healthy",
+    "conf": 0.408447265625
+   },
+   "focal_adabn_la": {
+    "pred": "Raspberry healthy",
+    "conf": 0.41659714784418106
+   },
+   "cd_apdm": {
+    "pred": "Grape healthy",
+    "conf": 0.9830074495958849
+   }
+  },
+  {
+   "image_id": "train/Apple rust leaf/apples_rusts+frogs-eye.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Apple cedar rust",
+   "resnet50": {
+    "pred": "Grape black rot",
+    "conf": 0.580078125
+   },
+   "focal_adabn_la": {
+    "pred": "Soybean healthy",
+    "conf": 0.21666343176810224
+   },
+   "cd_apdm": {
+    "pred": "Apple cedar rust",
+    "conf": 0.9827497891836993
+   }
+  },
+  {
+   "image_id": "train/Strawberry leaf/strawberry-leaves-stock-picture-1860898.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Strawberry healthy",
+   "resnet50": {
+    "pred": "Squash powdery mildew",
+    "conf": 0.99072265625
+   },
+   "focal_adabn_la": {
+    "pred": "Grape healthy",
+    "conf": 0.48691633021525094
+   },
+   "cd_apdm": {
+    "pred": "Strawberry healthy",
+    "conf": 0.9808380049416275
+   }
+  },
+  {
+   "image_id": "train/Tomato mold leaf/607-155-0.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Tomato leaf mold",
+   "resnet50": {
+    "pred": "Tomato yellow leaf curl virus",
+    "conf": 0.5087890625
+   },
+   "focal_adabn_la": {
+    "pred": "Tomato yellow leaf curl virus",
+    "conf": 0.30356456140404947
+   },
+   "cd_apdm": {
+    "pred": "Tomato leaf mold",
+    "conf": 0.9648721394964803
+   }
+  },
+  {
+   "image_id": "train/Tomato leaf mosaic virus/wd0phb4.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Tomato mosaic virus",
+   "resnet50": {
+    "pred": "Raspberry healthy",
+    "conf": 0.60400390625
+   },
+   "focal_adabn_la": {
+    "pred": "Raspberry healthy",
+    "conf": 0.5081694826212868
+   },
+   "cd_apdm": {
+    "pred": "Tomato mosaic virus",
+    "conf": 0.7917731268144088
+   }
+  },
+  {
+   "image_id": "test/Raspberry leaf/leaves-of-raspberry-stock-picture-2529053.jpg",
+   "kind": "ours_correct_base_wrong",
+   "true": "Raspberry healthy",
+   "resnet50": {
+    "pred": "Apple healthy",
+    "conf": 0.93310546875
+   },
+   "focal_adabn_la": {
+    "pred": "Raspberry healthy",
+    "conf": 0.6881423767849743
+   },
+   "cd_apdm": {
+    "pred": "Raspberry healthy",
+    "conf": 0.7296020887292934
+   }
+  },
+  {
+   "image_id": "train/Raspberry leaf/green-raspberry-leaf-J68BYN.jpg",
+   "kind": "both_wrong",
+   "true": "Raspberry healthy",
+   "resnet50": {
+    "pred": "Squash powdery mildew",
+    "conf": 0.966796875
+   },
+   "focal_adabn_la": {
+    "pred": "Tomato yellow leaf curl virus",
+    "conf": 0.5564909812611616
+   },
+   "cd_apdm": {
+    "pred": "Tomato yellow leaf curl virus",
+    "conf": 0.9993757942767116
+   }
+  },
+  {
+   "image_id": "train/Peach leaf/peach-leaves-18058413.jpg",
+   "kind": "both_wrong",
+   "true": "Peach healthy",
+   "resnet50": {
+    "pred": "Pepper bell healthy",
+    "conf": 0.7138671875
+   },
+   "focal_adabn_la": {
+    "pred": "Soybean healthy",
+    "conf": 0.9999644255530666
+   },
+   "cd_apdm": {
+    "pred": "Soybean healthy",
+    "conf": 0.9996115674131849
+   }
+  }
+ ]
+}

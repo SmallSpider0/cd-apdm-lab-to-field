@@ -1,0 +1,54 @@
+# EXP-2 基线：7 方法 × 6 seeds（+ CoTTA 附录起点），按源域验证集选型（fix-experiment-protocol）
+# CD-APDM 的 6 个 seed 在 exp2-ours.tsv（待自适应阶段实现缺陷修复并验证后运行）。汇总时两个队列目录一并传入
+# 单队列串行：瓶颈在 GPU；ResNet-50 骨干 lr 0.1×（决策记录 4）；225 仅 7 核，worker=6
+# 2026-09-22：服务器重启清空本地盘，全部从头在 NAS（AGRI_ROOT）上重跑
+# 2026-09-23：seed 1 的 FlexMatch 之后暂停，让位定稿后的 exp2-ours / exp4 / exp3；剩余任务在 exp3 之后续跑
+# after: exp3
+source_only-s0	$PY -m src.baselines.run --method source_only --seed 0 --num_workers 6
+cotta-s0	$PY -m src.baselines.run --method cotta --seed 0 --num_workers 6 --init_from $RUN_DIR/../source_only-s0
+cotta_final-s0	$PY -m src.baselines.run --method cotta --seed 0 --num_workers 6 --init_from $RUN_DIR/../source_only-s0 --init_ckpt final
+focal-s0	$PY -m src.baselines.run --method focal --seed 0 --num_workers 6
+dann-s0	$PY -m src.baselines.run --method dann --seed 0 --num_workers 6
+wb_dann-s0	$PY -m src.baselines.run --method wb_dann --seed 0 --num_workers 6
+flexmatch-s0	$PY -m src.baselines.run --method flexmatch --seed 0 --num_workers 6
+swin_b-s0	$PY -m src.baselines.run --method swin_b --seed 0 --num_workers 6
+source_only-s1	$PY -m src.baselines.run --method source_only --seed 1 --num_workers 6
+cotta-s1	$PY -m src.baselines.run --method cotta --seed 1 --num_workers 6 --init_from $RUN_DIR/../source_only-s1
+cotta_final-s1	$PY -m src.baselines.run --method cotta --seed 1 --num_workers 6 --init_from $RUN_DIR/../source_only-s1 --init_ckpt final
+focal-s1	$PY -m src.baselines.run --method focal --seed 1 --num_workers 6
+dann-s1	$PY -m src.baselines.run --method dann --seed 1 --num_workers 6
+wb_dann-s1	$PY -m src.baselines.run --method wb_dann --seed 1 --num_workers 6
+flexmatch-s1	$PY -m src.baselines.run --method flexmatch --seed 1 --num_workers 6
+swin_b-s1	$PY -m src.baselines.run --method swin_b --seed 1 --num_workers 6
+source_only-s2	$PY -m src.baselines.run --method source_only --seed 2 --num_workers 6
+cotta-s2	$PY -m src.baselines.run --method cotta --seed 2 --num_workers 6 --init_from $RUN_DIR/../source_only-s2
+cotta_final-s2	$PY -m src.baselines.run --method cotta --seed 2 --num_workers 6 --init_from $RUN_DIR/../source_only-s2 --init_ckpt final
+focal-s2	$PY -m src.baselines.run --method focal --seed 2 --num_workers 6
+dann-s2	$PY -m src.baselines.run --method dann --seed 2 --num_workers 6
+wb_dann-s2	$PY -m src.baselines.run --method wb_dann --seed 2 --num_workers 6
+flexmatch-s2	$PY -m src.baselines.run --method flexmatch --seed 2 --num_workers 6
+swin_b-s2	$PY -m src.baselines.run --method swin_b --seed 2 --num_workers 6
+source_only-s3	$PY -m src.baselines.run --method source_only --seed 3 --num_workers 6
+cotta-s3	$PY -m src.baselines.run --method cotta --seed 3 --num_workers 6 --init_from $RUN_DIR/../source_only-s3
+cotta_final-s3	$PY -m src.baselines.run --method cotta --seed 3 --num_workers 6 --init_from $RUN_DIR/../source_only-s3 --init_ckpt final
+focal-s3	$PY -m src.baselines.run --method focal --seed 3 --num_workers 6
+dann-s3	$PY -m src.baselines.run --method dann --seed 3 --num_workers 6
+wb_dann-s3	$PY -m src.baselines.run --method wb_dann --seed 3 --num_workers 6
+flexmatch-s3	$PY -m src.baselines.run --method flexmatch --seed 3 --num_workers 6
+swin_b-s3	$PY -m src.baselines.run --method swin_b --seed 3 --num_workers 6
+source_only-s4	$PY -m src.baselines.run --method source_only --seed 4 --num_workers 6
+cotta-s4	$PY -m src.baselines.run --method cotta --seed 4 --num_workers 6 --init_from $RUN_DIR/../source_only-s4
+cotta_final-s4	$PY -m src.baselines.run --method cotta --seed 4 --num_workers 6 --init_from $RUN_DIR/../source_only-s4 --init_ckpt final
+focal-s4	$PY -m src.baselines.run --method focal --seed 4 --num_workers 6
+dann-s4	$PY -m src.baselines.run --method dann --seed 4 --num_workers 6
+wb_dann-s4	$PY -m src.baselines.run --method wb_dann --seed 4 --num_workers 6
+flexmatch-s4	$PY -m src.baselines.run --method flexmatch --seed 4 --num_workers 6
+swin_b-s4	$PY -m src.baselines.run --method swin_b --seed 4 --num_workers 6
+source_only-s5	$PY -m src.baselines.run --method source_only --seed 5 --num_workers 6
+cotta-s5	$PY -m src.baselines.run --method cotta --seed 5 --num_workers 6 --init_from $RUN_DIR/../source_only-s5
+cotta_final-s5	$PY -m src.baselines.run --method cotta --seed 5 --num_workers 6 --init_from $RUN_DIR/../source_only-s5 --init_ckpt final
+focal-s5	$PY -m src.baselines.run --method focal --seed 5 --num_workers 6
+dann-s5	$PY -m src.baselines.run --method dann --seed 5 --num_workers 6
+wb_dann-s5	$PY -m src.baselines.run --method wb_dann --seed 5 --num_workers 6
+flexmatch-s5	$PY -m src.baselines.run --method flexmatch --seed 5 --num_workers 6
+swin_b-s5	$PY -m src.baselines.run --method swin_b --seed 5 --num_workers 6

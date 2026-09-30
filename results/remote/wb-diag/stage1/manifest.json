@@ -1,0 +1,4 @@
+{"run_id": "wb-diag/stage1", "queue": "wb-diag", "repo_commit": "777cd5d",
+ "command": "cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.baselines.run --method wb_dann --seed 0 --num_workers 6 --save_stage1 --out $RUN_DIR", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-23T16:00:48+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

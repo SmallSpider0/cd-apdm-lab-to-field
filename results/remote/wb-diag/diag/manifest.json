@@ -1,0 +1,4 @@
+{"run_id": "wb-diag/diag", "queue": "wb-diag", "repo_commit": "777cd5d",
+ "command": "cd $AGRI_WORKSPACE/repo-dev/code && $PY -m tools.wb_diag --stage1 $AGRI_RUNS/wb-diag/stage1 --seed 0 --out $RUN_DIR/wb_diag.json", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-23T18:19:10+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

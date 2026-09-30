@@ -1,0 +1,35 @@
+# EXP-4 推理期消融（revise-cdapdm-method 设计第 6 节，2026-09-23 按定稿重定义）：复用 exp2-ours 的 ours-s* checkpoint，无需重训
+# 定稿流程（AdaBN + LA + γ=0.005）本身即 exp2-ours 的结果，不在此重跑。只做主规则（bestval）。
+# 负面组件的伪标签阈值 0.9 与开发集 R3a–c 相同。
+# after: wb-diag
+# 变体：noadapt = 不做 AdaBN（LA 与 γ 保留）；adabn_g0 = AdaBN + LA，无尾类重标定（γ=0）；neg_mt = 负面：+Mean-Teacher；neg_ccganm = 负面：+Mean-Teacher +CC-GANM；neg_ssplam = 负面：+Mean-Teacher +SS-PLAM 预训练
+noadapt-s0	$PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s0	$PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s0	$PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s0	$PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s0	$PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true
+noadapt-s1	$PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $AGRI_RUNS/exp2-ours/ours-s1/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s1	$PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $AGRI_RUNS/exp2-ours/ours-s1/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s1	$PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $AGRI_RUNS/exp2-ours/ours-s1/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s1	$PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $AGRI_RUNS/exp2-ours/ours-s1/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s1	$PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $AGRI_RUNS/exp2-ours/ours-s1/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true
+noadapt-s2	$PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s2	$PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s2	$PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s2	$PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s2	$PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true
+noadapt-s3	$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s3	$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s3	$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s3	$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s3	$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true
+noadapt-s4	$PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $AGRI_RUNS/exp2-ours/ours-s4/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s4	$PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $AGRI_RUNS/exp2-ours/ours-s4/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s4	$PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $AGRI_RUNS/exp2-ours/ours-s4/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s4	$PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $AGRI_RUNS/exp2-ours/ours-s4/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s4	$PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $AGRI_RUNS/exp2-ours/ours-s4/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true
+noadapt-s5	$PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+adabn_g0-s5	$PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --ablation w/o-ACRM
+neg_mt-s5	$PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false
+neg_ccganm-s5	$PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=false --set cc_ganm.enabled=true
+neg_ssplam-s5	$PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn_mt --set ss_plam.pseudo_conf_threshold=0.9 --set ss_plam.pretrain=true

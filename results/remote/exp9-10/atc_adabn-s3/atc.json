@@ -1,0 +1,187 @@
+{
+ "adabn": true,
+ "source_val_acc": 0.9871428571428571,
+ "target_dev_true_acc": 0.1918158567774936,
+ "AC": 0.4807931184768677,
+ "DoC": 0.5021587572778974,
+ "ATC_maxconf": 0.32608695652173914,
+ "ATC_negent": 0.2186700767263427,
+ "per_class": [
+  {
+   "class": 0,
+   "n_pred_target": 124,
+   "est_precision": 0.22580645161290322,
+   "est_precision_global_t": 0.31451612903225806,
+   "true_precision": 0.11290322580645161
+  },
+  {
+   "class": 1,
+   "n_pred_target": 119,
+   "est_precision": 0.17647058823529413,
+   "est_precision_global_t": 0.29411764705882354,
+   "true_precision": 0.07563025210084033
+  },
+  {
+   "class": 2,
+   "n_pred_target": 73,
+   "est_precision": 0.0684931506849315,
+   "est_precision_global_t": 0.136986301369863,
+   "true_precision": 0.1095890410958904
+  },
+  {
+   "class": 3,
+   "n_pred_target": 60,
+   "est_precision": 0.05,
+   "est_precision_global_t": 0.13333333333333333,
+   "true_precision": 0.23333333333333334
+  },
+  {
+   "class": 4,
+   "n_pred_target": 46,
+   "est_precision": 0.10869565217391304,
+   "est_precision_global_t": 0.30434782608695654,
+   "true_precision": 0.5217391304347826
+  },
+  {
+   "class": 5,
+   "n_pred_target": 77,
+   "est_precision": 0.09090909090909091,
+   "est_precision_global_t": 0.2077922077922078,
+   "true_precision": 0.2597402597402597
+  },
+  {
+   "class": 6,
+   "n_pred_target": 9,
+   "est_precision": 0.2222222222222222,
+   "est_precision_global_t": 0.2222222222222222,
+   "true_precision": 0.0
+  },
+  {
+   "class": 7,
+   "n_pred_target": 37,
+   "est_precision": 0.16216216216216217,
+   "est_precision_global_t": 0.16216216216216217,
+   "true_precision": 0.05405405405405406
+  },
+  {
+   "class": 8,
+   "n_pred_target": 18,
+   "est_precision": 0.05555555555555555,
+   "est_precision_global_t": 0.05555555555555555,
+   "true_precision": 0.1111111111111111
+  },
+  {
+   "class": 9,
+   "n_pred_target": 7,
+   "est_precision": 0.14285714285714285,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.14285714285714285
+  },
+  {
+   "class": 10,
+   "n_pred_target": 12,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.16666666666666666
+  },
+  {
+   "class": 12,
+   "n_pred_target": 13,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.15384615384615385,
+   "true_precision": 0.23076923076923078
+  },
+  {
+   "class": 13,
+   "n_pred_target": 12,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.3333333333333333
+  },
+  {
+   "class": 14,
+   "n_pred_target": 15,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.26666666666666666,
+   "true_precision": 0.3333333333333333
+  },
+  {
+   "class": 15,
+   "n_pred_target": 6,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.6666666666666666
+  },
+  {
+   "class": 17,
+   "n_pred_target": 20,
+   "est_precision": 0.15,
+   "est_precision_global_t": 0.15,
+   "true_precision": 0.2
+  },
+  {
+   "class": 18,
+   "n_pred_target": 14,
+   "est_precision": 0.5,
+   "est_precision_global_t": 0.2857142857142857,
+   "true_precision": 0.2857142857142857
+  },
+  {
+   "class": 19,
+   "n_pred_target": 18,
+   "est_precision": 0.6111111111111112,
+   "est_precision_global_t": 0.2222222222222222,
+   "true_precision": 0.0
+  },
+  {
+   "class": 21,
+   "n_pred_target": 38,
+   "est_precision": 0.13157894736842105,
+   "est_precision_global_t": 0.18421052631578946,
+   "true_precision": 0.2631578947368421
+  },
+  {
+   "class": 23,
+   "n_pred_target": 18,
+   "est_precision": 0.05555555555555555,
+   "est_precision_global_t": 0.2222222222222222,
+   "true_precision": 0.2222222222222222
+  },
+  {
+   "class": 24,
+   "n_pred_target": 19,
+   "est_precision": 0.05263157894736842,
+   "est_precision_global_t": 0.05263157894736842,
+   "true_precision": 0.05263157894736842
+  },
+  {
+   "class": 25,
+   "n_pred_target": 8,
+   "est_precision": 0.5,
+   "est_precision_global_t": 0.375,
+   "true_precision": 0.5
+  }
+ ],
+ "per_class_spearman": -0.3428139537511092,
+ "per_class_mean_abs_err": 0.19592477222110302,
+ "selected_pseudo_labels": [
+  {
+   "conf_threshold": 0.5,
+   "coverage": 0.4079283887468031,
+   "est_precision": 0.48589341692789967,
+   "true_precision": 0.27586206896551724
+  },
+  {
+   "conf_threshold": 0.7,
+   "coverage": 0.23145780051150894,
+   "est_precision": 0.7292817679558011,
+   "true_precision": 0.35359116022099446
+  },
+  {
+   "conf_threshold": 0.9,
+   "coverage": 0.1010230179028133,
+   "est_precision": 0.9873417721518988,
+   "true_precision": 0.3924050632911392
+  }
+ ]
+}

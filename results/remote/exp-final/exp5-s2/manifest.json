@@ -1,0 +1,4 @@
+{"run_id": "exp-final/exp5-s2", "queue": "exp-final", "repo_commit": "9a7b6d2",
+ "command": "cd $AGRI_WORKSPACE/repo-final/code && $PY -m src.baselines.run --method source_only --seed 2 --base configs/exp5_original_split.yaml --num_workers 6 --out $RUN_DIR && $PY -m tools.predict_source_val --run_dir $RUN_DIR --config configs/exp5_original_split.yaml --out $RUN_DIR/src_val_pred.npz", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-26T18:59:12+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

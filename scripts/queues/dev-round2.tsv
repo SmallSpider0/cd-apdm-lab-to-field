@@ -1,0 +1,6 @@
+R2a_none_g008	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none
+R2b_none_g0	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none --set acrm.gamma_boost=0
+R2c_adabn_g0	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn --set acrm.gamma_boost=0
+R2d_adabn_g008	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn
+R2e_adabn_g0_tau0	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn --set acrm.gamma_boost=0 --set logit_adjust.tau=0
+R2f_adabn_g0002	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn --set acrm.gamma_boost=0.002

@@ -1,0 +1,33 @@
+# Table 1 补充行（Open Decision 3，作者 2026-09-23 同意）：ResNet 基线 + 与 CD-APDM 相同的推理期 AdaBN。
+# 只导出 AdaBN 前后的 logits；logit 调整 τ=0.5 与 γ 在本机离线组合（scripts/analysis/adabn_decompose.py），不对基线调参。
+# after: exp2
+source_only-s0	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+source_only-s1	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s1 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+source_only-s2	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s2 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+source_only-s3	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s3 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+source_only-s4	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s4 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+source_only-s5	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/source_only-s5 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s0	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s1	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s1 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s2	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s2 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s3	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s3 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s4	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s4 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+focal-s5	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s5 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s0	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s1	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s1 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s2	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s2 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s3	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s3 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s4	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s4 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+dann-s5	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/dann-s5 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s0	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s1	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s1 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s2	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s2 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s3	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s3 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s4	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s4 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+wb_dann-s5	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/wb_dann-s5 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s0	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s1	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s1 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s2	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s2 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s3	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s3 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s4	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s4 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done
+flexmatch-s5	for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/flexmatch-s5 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done

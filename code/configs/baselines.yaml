@@ -1,0 +1,70 @@
+# Table 1 对比基线的方法专属超参。
+#
+# 共享（与 CD-APDM 同一份 configs/cd_apdm.yaml，由 run.py 读取，**不在此重复**）：
+#   数据划分、训练 epochs、batch size、训练增强、warmup 与 cosine 调度、AMP、
+#   评测函数（utils/metrics.evaluate_all）、骨干（ImageNet 预训练 ResNet-50）、
+#   分类头结构（与 CDAPDMModel.classifier 同构）。
+# 这样各行差异只来自训练目标，且共享部分不可能与 CD-APDM 漂移。
+#
+# 优化器默认与 CD-APDM 相同（Adam, lr 1e-3, wd 5e-4；ResNet-50 骨干取 0.1 倍，
+# 即 train.backbone_lr_mult，2026-09-21 决策记录 4，WB 第一阶段同样适用）。只在两种情况下偏离：
+#   (1) 方法的贡献本身就是优化方案 —— WB（其核心发现是权重衰减）；
+#   (2) 架构需要 —— Swin-B（Adam 1e-3 对 Transformer 微调过大，用其标准设置）。
+# 若对 Swin-B 也强用 Adam 1e-3，等于故意削弱对手，审稿人会指出。
+#
+# 所有超参取自官方实现或原论文，**均未在本数据集上调参** —— 调参需要验证集，
+# 而验证协议尚属 fix-experiment-protocol 的待决项。
+#
+# 与官方实现的偏离（逐条，均为算力对等或数据集适配所必需）：
+#   FlexMatch  uratio 1（官方 μ=7）：每步目标域图像数与 DANN 相同，算力对等。
+#   DANN       学习率不用原文的 μ0/(1+10p)^0.75 退火，改用共享 cosine；
+#              GRL 系数调度保持原文。
+#   WB+DANN    第一阶段 epochs 取共享值（官方 CIFAR 为 320）。
+#   CoTTA      ap 取官方 CIFAR-100 配置 0.72（官方仅给出 10/100/1000 类的取值，
+#              本基准 28 类，未调）；分类头 Dropout 在适配时关闭（官方模型不含 Dropout）；
+#              目标域按 seed 打乱成流（划分文件按类排序，原序会使每批几乎只有一类）。
+
+baselines:
+
+  source_only: {}        # 纯交叉熵，仅源域；即 Table 1 的 "ResNet-50 (Baseline)"
+
+  focal:
+    gamma: 2.0           # Lin et al. 2017；多分类不加 α
+
+  dann:                  # Ganin et al. 2016
+    disc_hidden: 1024    # 判别器 1024-1024-1，Dropout 0.5
+    trade_off: 1.0       # 域损失权重；自适应强度由 GRL 系数调度控制
+
+  wb_dann:               # Alshammari et al. CVPR 2022，官方 ShadeAlsha/LTR-weight-balancing
+    disc_hidden: 1024
+    trade_off: 1.0
+    optim:               # 第一阶段：官方 demo1 —— SGD(momentum 0.9) lr 0.01, wd 5e-3
+      name: sgd_plain
+      lr: 0.01
+      weight_decay: 0.005
+    stage2:              # 官方 demo2 —— 只训最后一层，SGD lr 0.01, wd 0.1, 10 epochs, cosine
+      optim: sgd_plain
+      lr: 0.01
+      weight_decay: 0.1
+      epochs: 10
+      maxnorm_thresh: 0.1   # MaxNorm_via_PGD(thresh=0.1)
+      cb_beta: 0.9999       # CB_loss(..., "softmax", 0.9999, ...)
+
+  flexmatch:             # Zhang et al. NeurIPS 2021，官方 USB semilearn/algorithms/flexmatch
+    p_cutoff: 0.95
+    thresh_warmup: true
+    lambda_u: 1.0
+    uratio: 1
+
+  swin_b:                # Liu et al. 2021；torchvision swin_b, IMAGENET1K_V1
+    optim:
+      name: adamw
+      lr: 0.0001
+      weight_decay: 0.05
+
+  cotta:                 # Wang et al. CVPR 2022，官方 qinenergy/cotta，cifar100 配置
+    lr: 0.001            # Adam, wd 0
+    mt: 0.999
+    rst: 0.01
+    ap: 0.72
+    n_aug: 32

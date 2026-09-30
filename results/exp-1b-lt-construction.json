@@ -1,0 +1,444 @@
+{
+ "task": "1b",
+ "decision": "A-1 修正版（plan/基准方案决策简报.md, 2026-09-20）",
+ "seed": 20260920,
+ "target_imbalance_factor": 500,
+ "val_fraction": 0.1,
+ "formula": "n_i = min(available_i, round(n_max * IF^(-i/(C-1))))，类别按可用量降序",
+ "source": {
+  "dataset": "PlantVillage (raw/color)",
+  "classes": 28,
+  "total_kept": 23688,
+  "total_available": 38542,
+  "max_class": 5357,
+  "min_class": 11,
+  "realized_imbalance_factor": 487.0,
+  "theoretical_imbalance_factor": 500,
+  "deviation_note": "实际 IF 为 487.0，与目标 500 基本一致（差异来自最小类的取整）。但 3 个类别的可用量不足以达到理论采样量，因 min 钳位使分布在中段偏离理想指数形状；逐类偏差见 classes_below_theoretical。",
+  "classes_below_theoretical": [
+   {
+    "class": "Tomato___Bacterial_spot",
+    "theoretical": 3381,
+    "available": 2127,
+    "kept": 2127
+   },
+   {
+    "class": "Tomato___Late_blight",
+    "theoretical": 2686,
+    "available": 1909,
+    "kept": 1909
+   },
+   {
+    "class": "Squash___Powdery_mildew",
+    "theoretical": 2133,
+    "available": 1835,
+    "kept": 1835
+   }
+  ],
+  "bucket_convention": {
+   "reference": "Liu et al., Large-Scale Long-Tailed Recognition in an Open World, CVPR 2019 (OLTR)；ImageNet-LT / Places-LT 沿用此划分",
+   "many_shot": "> 100",
+   "medium_shot": "20-100",
+   "few_shot": "< 20",
+   "counts": {
+    "many": 18,
+    "medium": 7,
+    "few": 3
+   },
+   "tail_definition": "Tail = medium ∪ few（≤100 张）。身份由源域构造分布确定，与目标域计数无关。",
+   "tail_classes": [
+    "Tomato___Leaf_Mold",
+    "Cherry_(including_sour)___healthy",
+    "Apple___Apple_scab",
+    "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+    "Strawberry___healthy",
+    "Grape___healthy",
+    "Tomato___Tomato_mosaic_virus",
+    "Raspberry___healthy",
+    "Peach___healthy",
+    "Apple___Cedar_apple_rust"
+   ]
+  },
+  "per_class": {
+   "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "class_idx": 0,
+    "available": 5357,
+    "theoretical": 5357,
+    "kept": 5357,
+    "bucket": "many",
+    "train": 4821,
+    "val": 536
+   },
+   "Soybean___healthy": {
+    "class_idx": 1,
+    "available": 5090,
+    "theoretical": 4256,
+    "kept": 4256,
+    "bucket": "many",
+    "train": 3830,
+    "val": 426
+   },
+   "Tomato___Bacterial_spot": {
+    "class_idx": 2,
+    "available": 2127,
+    "theoretical": 3381,
+    "kept": 2127,
+    "bucket": "many",
+    "train": 1914,
+    "val": 213
+   },
+   "Tomato___Late_blight": {
+    "class_idx": 3,
+    "available": 1909,
+    "theoretical": 2686,
+    "kept": 1909,
+    "bucket": "many",
+    "train": 1718,
+    "val": 191
+   },
+   "Squash___Powdery_mildew": {
+    "class_idx": 4,
+    "available": 1835,
+    "theoretical": 2133,
+    "kept": 1835,
+    "bucket": "many",
+    "train": 1651,
+    "val": 184
+   },
+   "Tomato___Septoria_leaf_spot": {
+    "class_idx": 5,
+    "available": 1771,
+    "theoretical": 1695,
+    "kept": 1695,
+    "bucket": "many",
+    "train": 1525,
+    "val": 170
+   },
+   "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "class_idx": 6,
+    "available": 1676,
+    "theoretical": 1346,
+    "kept": 1346,
+    "bucket": "many",
+    "train": 1211,
+    "val": 135
+   },
+   "Apple___healthy": {
+    "class_idx": 7,
+    "available": 1645,
+    "theoretical": 1070,
+    "kept": 1070,
+    "bucket": "many",
+    "train": 963,
+    "val": 107
+   },
+   "Tomato___healthy": {
+    "class_idx": 8,
+    "available": 1591,
+    "theoretical": 850,
+    "kept": 850,
+    "bucket": "many",
+    "train": 765,
+    "val": 85
+   },
+   "Blueberry___healthy": {
+    "class_idx": 9,
+    "available": 1502,
+    "theoretical": 675,
+    "kept": 675,
+    "bucket": "many",
+    "train": 607,
+    "val": 68
+   },
+   "Pepper,_bell___healthy": {
+    "class_idx": 10,
+    "available": 1478,
+    "theoretical": 536,
+    "kept": 536,
+    "bucket": "many",
+    "train": 482,
+    "val": 54
+   },
+   "Corn_(maize)___Common_rust_": {
+    "class_idx": 11,
+    "available": 1192,
+    "theoretical": 426,
+    "kept": 426,
+    "bucket": "many",
+    "train": 383,
+    "val": 43
+   },
+   "Grape___Black_rot": {
+    "class_idx": 12,
+    "available": 1180,
+    "theoretical": 338,
+    "kept": 338,
+    "bucket": "many",
+    "train": 304,
+    "val": 34
+   },
+   "Potato___Early_blight": {
+    "class_idx": 13,
+    "available": 1000,
+    "theoretical": 269,
+    "kept": 269,
+    "bucket": "many",
+    "train": 242,
+    "val": 27
+   },
+   "Potato___Late_blight": {
+    "class_idx": 14,
+    "available": 1000,
+    "theoretical": 214,
+    "kept": 214,
+    "bucket": "many",
+    "train": 193,
+    "val": 21
+   },
+   "Tomato___Early_blight": {
+    "class_idx": 15,
+    "available": 1000,
+    "theoretical": 170,
+    "kept": 170,
+    "bucket": "many",
+    "train": 153,
+    "val": 17
+   },
+   "Pepper,_bell___Bacterial_spot": {
+    "class_idx": 16,
+    "available": 997,
+    "theoretical": 135,
+    "kept": 135,
+    "bucket": "many",
+    "train": 121,
+    "val": 14
+   },
+   "Corn_(maize)___Northern_Leaf_Blight": {
+    "class_idx": 17,
+    "available": 985,
+    "theoretical": 107,
+    "kept": 107,
+    "bucket": "many",
+    "train": 96,
+    "val": 11
+   },
+   "Tomato___Leaf_Mold": {
+    "class_idx": 18,
+    "available": 952,
+    "theoretical": 85,
+    "kept": 85,
+    "bucket": "medium",
+    "train": 77,
+    "val": 8
+   },
+   "Cherry_(including_sour)___healthy": {
+    "class_idx": 19,
+    "available": 854,
+    "theoretical": 68,
+    "kept": 68,
+    "bucket": "medium",
+    "train": 61,
+    "val": 7
+   },
+   "Apple___Apple_scab": {
+    "class_idx": 20,
+    "available": 630,
+    "theoretical": 54,
+    "kept": 54,
+    "bucket": "medium",
+    "train": 49,
+    "val": 5
+   },
+   "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "class_idx": 21,
+    "available": 513,
+    "theoretical": 43,
+    "kept": 43,
+    "bucket": "medium",
+    "train": 39,
+    "val": 4
+   },
+   "Strawberry___healthy": {
+    "class_idx": 22,
+    "available": 456,
+    "theoretical": 34,
+    "kept": 34,
+    "bucket": "medium",
+    "train": 31,
+    "val": 3
+   },
+   "Grape___healthy": {
+    "class_idx": 23,
+    "available": 423,
+    "theoretical": 27,
+    "kept": 27,
+    "bucket": "medium",
+    "train": 24,
+    "val": 3
+   },
+   "Tomato___Tomato_mosaic_virus": {
+    "class_idx": 24,
+    "available": 373,
+    "theoretical": 21,
+    "kept": 21,
+    "bucket": "medium",
+    "train": 19,
+    "val": 2
+   },
+   "Raspberry___healthy": {
+    "class_idx": 25,
+    "available": 371,
+    "theoretical": 17,
+    "kept": 17,
+    "bucket": "few",
+    "train": 15,
+    "val": 2
+   },
+   "Peach___healthy": {
+    "class_idx": 26,
+    "available": 360,
+    "theoretical": 13,
+    "kept": 13,
+    "bucket": "few",
+    "train": 12,
+    "val": 1
+   },
+   "Apple___Cedar_apple_rust": {
+    "class_idx": 27,
+    "available": 275,
+    "theoretical": 11,
+    "kept": 11,
+    "bucket": "few",
+    "train": 10,
+    "val": 1
+   }
+  }
+ },
+ "validation_set_note": {
+  "current": "按 10% 比例从保留集中切分，最小类（few-shot）因此仅得 1 张验证样本。",
+  "issue": "从 few-shot 类切走训练样本代价高昂——最小类仅 11 张。且单张验证样本无法反映该类性能。",
+  "alternative_verified": "可改用**未被 LT 采样选中的剩余图像**构建均衡验证集：剩余合计 14,854 张；全部 medium/few-shot 类别剩余 264–867 张，足以支撑每类 50 张的均衡验证集，且完全不占用尾类训练样本。仅 4 个 many-shot 类别（受可用量限制）剩余为 0，需从其保留集切分——代价可忽略（50 / 1695~5357）。",
+  "owner": "此项属 fix-experiment-protocol 的选型协议决策，1b/1c 不越界决定。"
+ },
+ "dropped_classes": {
+  "note": "这些 PlantVillage 类别在 PlantDoc 中无对应，已从源域丢弃。此为对 R2-1「不匹配类别如何处理」的答复依据。",
+  "count": 10,
+  "images_discarded": 15763,
+  "classes": [
+   {
+    "class": "Orange___Haunglongbing_(Citrus_greening)",
+    "available": 5507
+   },
+   {
+    "class": "Peach___Bacterial_spot",
+    "available": 2297
+   },
+   {
+    "class": "Tomato___Target_Spot",
+    "available": 1404
+   },
+   {
+    "class": "Grape___Esca_(Black_Measles)",
+    "available": 1383
+   },
+   {
+    "class": "Corn_(maize)___healthy",
+    "available": 1162
+   },
+   {
+    "class": "Strawberry___Leaf_scorch",
+    "available": 1109
+   },
+   {
+    "class": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+    "available": 1076
+   },
+   {
+    "class": "Cherry_(including_sour)___Powdery_mildew",
+    "available": 1052
+   },
+   {
+    "class": "Apple___Black_rot",
+    "available": 621
+   },
+   {
+    "class": "Potato___healthy",
+    "available": 152
+   }
+  ]
+ },
+ "target": {
+  "dataset": "PlantDoc",
+  "total": 2566,
+  "classes": 28,
+  "mapped_to_source": 28,
+  "native_splits": {
+   "test": 236,
+   "train": 2330
+  },
+  "per_class_mapped": {
+   "Apple___Apple_scab": 93,
+   "Apple___healthy": 91,
+   "Apple___Cedar_apple_rust": 87,
+   "Pepper,_bell___Bacterial_spot": 71,
+   "Pepper,_bell___healthy": 61,
+   "Blueberry___healthy": 113,
+   "Cherry_(including_sour)___healthy": 57,
+   "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 68,
+   "Corn_(maize)___Northern_Leaf_Blight": 190,
+   "Corn_(maize)___Common_rust_": 116,
+   "Peach___healthy": 110,
+   "Potato___Early_blight": 115,
+   "Potato___Late_blight": 105,
+   "Raspberry___healthy": 119,
+   "Soybean___healthy": 65,
+   "Squash___Powdery_mildew": 130,
+   "Strawberry___healthy": 96,
+   "Tomato___Early_blight": 88,
+   "Tomato___Septoria_leaf_spot": 151,
+   "Tomato___Bacterial_spot": 110,
+   "Tomato___Late_blight": 111,
+   "Tomato___Tomato_mosaic_virus": 54,
+   "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 76,
+   "Tomato___healthy": 63,
+   "Tomato___Leaf_Mold": 91,
+   "Grape___Black_rot": 64,
+   "Grape___healthy": 69,
+   "Tomato___Spider_mites Two-spotted_spider_mite": 2
+  },
+  "case_collision_excluded": {
+   "count": 12,
+   "paths": [
+    "train/Apple rust leaf/CAR1.jpg",
+    "train/Apple rust leaf/car1.jpg",
+    "train/Blueberry leaf/Blueberry-Leaf.jpg",
+    "train/Blueberry leaf/Blueberry-leaves.jpg",
+    "train/Blueberry leaf/blueberry-leaf.jpg",
+    "train/Blueberry leaf/blueberry-leaves.jpg",
+    "train/Corn leaf blight/Northern-Corn-Leaf-Blight.jpg",
+    "train/Corn leaf blight/northern-corn-leaf-blight.jpg",
+    "train/Peach leaf/Peach-Leaf.jpg",
+    "train/Peach leaf/peach-leaf.jpg",
+    "train/Potato leaf early blight/potato-blight-phytophora-infestans-close-up-of-infected-leaf-showing-A60HXN.jpg",
+    "train/Potato leaf early blight/potato-blight-phytophora-infestans-close-up-of-infected-leaf-showing-a60hxn.jpg"
+   ],
+   "reason": "路径仅大小写不同。macOS 默认文件系统不区分大小写，此类文件只能落盘其一且不确定是哪一个；Linux 上两者都在。实测非字节重复（体积差异显著），系同一主题的不同版本，本身即近重复嫌疑。全部排除以保证跨平台确定性。"
+  },
+  "protocol_note": "train/test 的使用方式（transductive 还是 inductive）属 fix-experiment-protocol 的待决项，此处仅保留原生划分标记。",
+  "unevaluable_classes": [
+   {
+    "plantvillage_class": "Tomato___Spider_mites Two-spotted_spider_mite",
+    "target_images": 2,
+    "source_images": 1346,
+    "source_rank": 7
+   }
+  ],
+  "unevaluable_note": "目标样本少于 10 张的类别，per-class recall 无统计意义，须单独报告、不计入聚合尾类指标（决议 2026-09-20）。注意其在源域的排名——本例中该类在源域属头部，即训练充分但无法评测，与尾类问题性质不同。"
+ },
+ "leakage_flags": {
+  "note": "基于文件名的启发式标记，供任务 5 使用。文件名无法提供可靠的单叶分组键 —— 多数类别仅有 1 个批次 token 覆盖上千张图。真正的近重复检测需在图像层面做感知哈希。",
+  "copy_suffix": 31,
+  "no_uuid": 426,
+  "with_leaf_group": 282
+ }
+}

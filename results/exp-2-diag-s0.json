@@ -1,0 +1,188 @@
+{
+ "exp": "EXP-2 诊断：ours-s0 自适应为何低于不自适应（诊断用，不作论文数字）",
+ "checkpoint": "runs/exp2/ours-s0/cd_apdm_bestval.pt（源域验证选中 epoch 85，src_val 96.5）",
+ "code": "code/tools/diagnose_adaptation.py 与 inference.py --ablation（repo-dev）",
+ "target_top1_during_training": {
+  "1": 25.1,
+  "6": 8.4,
+  "11": 10.0,
+  "21": 8.5,
+  "41": 11.1,
+  "61": 12.6,
+  "85": 12.9,
+  "100": 13.1
+ },
+ "no_adaptation": {
+  "tau=0": {
+   "top1": 12.9,
+   "tail": 8.9,
+   "macro_f1": 8.8,
+   "ece": 0.49
+  },
+  "tau=0.5": {
+   "top1": 12.2,
+   "tail": 11.9,
+   "macro_f1": 8.8,
+   "ece": 0.5
+  },
+  "tau=1.0": {
+   "top1": 11.5,
+   "tail": 15.9,
+   "macro_f1": 8.4,
+   "ece": 0.52
+  }
+ },
+ "with_adaptation": {
+  "full": {
+   "top1": 6.7,
+   "tail": 12.7,
+   "macro_f1": 5.3,
+   "ece": 0.69
+  },
+  "w/o-CC-GANM": {
+   "top1": 9.6,
+   "tail": 20.5,
+   "macro_f1": 6.9,
+   "ece": 0.55
+  },
+  "w/o-SS-PLAM": {
+   "top1": 7.4,
+   "tail": 13.4,
+   "macro_f1": 5.0,
+   "ece": 0.62
+  },
+  "w/o-ACRM": {
+   "top1": 5.8,
+   "tail": 7.5,
+   "macro_f1": 4.2,
+   "ece": 0.69
+  }
+ },
+ "reading": [
+  "logit 调整不是主因（Top-1 −0.7）",
+  "所有自适应变体均低于不自适应：共有的 Mean-Teacher 自训练在源模型目标域准确率约 13% 时放大伪标签错误（确认偏差）",
+  "CC-GANM 额外有害约 3 个点；ACRM 为唯一正贡献（+0.9）",
+  "根源：源模型在 Adam lr 1e-3 全量微调下对实验室图像过拟合，目标域从 epoch 1 的 25.1% 降到约 13%；源域验证集对此不可见"
+ ],
+ "decision_pending": "是否按文献先验标准调整全部 ResNet 方法的学习率（须在稿件中如实说明是在看到本诊断后调整的）",
+ "lr_option_B": {
+  "run": "runs/exp2/ours-s0（commit f7c9d77，骨干 lr 0.1×）；选中 epoch 97，src_val 98.8",
+  "no_adaptation": {
+   "tau=0": {
+    "top1": 17.4,
+    "tail": 9.6,
+    "macro_f1": 13.4,
+    "ece": 0.47
+   },
+   "tau=0.5": {
+    "top1": 16.9,
+    "tail": 15.1,
+    "macro_f1": 13.0,
+    "ece": 0.43
+   },
+   "tau=1.0": {
+    "top1": 17.2,
+    "tail": 23.8,
+    "macro_f1": 12.7,
+    "ece": 0.4
+   }
+  },
+  "with_adaptation": {
+   "full": {
+    "top1": 3.3,
+    "tail": 10.8,
+    "macro_f1": 0.5,
+    "ece": 0.88,
+    "top3_pred_share": 0.73
+   },
+   "w/o-CC-GANM": {
+    "top1": 10.8,
+    "tail": 28.7,
+    "macro_f1": 6.6,
+    "ece": 0.46
+   },
+   "w/o-SS-PLAM": {
+    "top1": 4.2,
+    "tail": 2.5,
+    "macro_f1": 0.7,
+    "ece": 0.89
+   },
+   "w/o-ACRM": {
+    "top1": 3.5,
+    "tail": 6.2,
+    "macro_f1": 2.3,
+    "ece": 0.64,
+    "top3_pred_share": 0.31
+   }
+  },
+  "reading": [
+   "学习率 B 使不自适应的源模型从 12.9 升到 17.4，但自适应后坍缩到 3.3（预测 73% 集中在 3 个尾类）",
+   "CC-GANM 是主要破坏源（去掉后 3.3→10.8）；ACRM 加剧集中但非主因",
+   "即使去掉 CC-GANM，自适应仍低于不自适应（10.8 < 17.4）"
+  ],
+  "implementation_defects_found": [
+   "CC-GANM 生成器输出 Tanh∈[-1,1]，真实输入为 ImageNet 标准化（约 [-2.1,2.6]）：学生训练在范围错误的图像上，判别器可凭范围区分真假",
+   "Mean-Teacher 中 G_S2T（源→目标）被施加于目标域图像，与其训练分布不符；CycleGAN 类 DA（如 CyCADA）应转换带标签的源域图像",
+   "自适应期间学生处于 train 模式，BN 运行统计量在上述图像上更新，测试时与真实图像不匹配"
+  ]
+ },
+ "after_implementation_fixes": {
+  "run": "225：runs/exp2-ours/ours-s0（commit 013933b，学习率 B + CC-GANM/教师模式修复）；选中 epoch 84，src_val 98.6",
+  "formal_result": {
+   "bestval": {
+    "top1": 7.1,
+    "tail": 15.4,
+    "macro_f1": 5.2,
+    "ece": 0.61
+   },
+   "final": {
+    "top1": 5.5,
+    "tail": 17.2,
+    "macro_f1": 3.4,
+    "ece": 0.46
+   }
+  },
+  "no_adaptation": {
+   "tau=0": {
+    "top1": 16.9,
+    "tail": 13.2,
+    "macro_f1": 13.8
+   },
+   "tau=0.5": {
+    "top1": 16.5,
+    "tail": 19.2,
+    "macro_f1": 14.3
+   },
+   "tau=1.0": {
+    "top1": 15.7,
+    "tail": 25.5,
+    "macro_f1": 12.8
+   }
+  },
+  "ablations": {
+   "w/o-CC-GANM": {
+    "top1": 9.7,
+    "tail": 22.8,
+    "macro_f1": 7.2,
+    "top3_share": 0.59
+   },
+   "w/o-SS-PLAM": {
+    "top1": 7.4,
+    "tail": 19.8,
+    "macro_f1": 4.6,
+    "top3_share": 0.64
+   },
+   "w/o-ACRM": {
+    "top1": 8.4,
+    "tail": 13.7,
+    "macro_f1": 5.4,
+    "top3_share": 0.67
+   }
+  },
+  "reading": [
+   "实现缺陷修复后，完整自适应 3.3→7.1，但仍远低于不自适应（16.9）",
+   "去掉任一组件都仍坍缩（前 3 类占预测 59–67%）：原因在各变体共有的伪标签自训练——源模型目标域准确率约 17%，伪标签多数错误，自训练放大错误（确认偏差）",
+   "此为方法层面的负面结果，而非实现缺陷；进一步修改自适应算法即属看过测试结果后重新设计方法，须作者决策"
+  ]
+ }
+}

@@ -1,0 +1,6 @@
+# WB+DANN 第二阶段诊断（作者 2026-09-23 同意"先诊断再定是否重跑"）：exp2/wb_dann-s0 第二阶段使源域验证 Top-1 95.1 → 58.0。
+# 1) 以同一 seed 复现整个 WB+DANN 训练并另存第一阶段末权重；2) 从该权重出发，逐一改变单个因素重跑第二阶段（tools/wb_diag.py）。
+# 用 repo-dev 的代码：诊断不进稿件，不受正式队列的同步保护约束。只看源域验证集，不看目标域标签。
+# after: exp2-ours
+stage1	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.baselines.run --method wb_dann --seed 0 --num_workers 6 --save_stage1 --out $RUN_DIR
+diag	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m tools.wb_diag --stage1 $AGRI_RUNS/wb-diag/stage1 --seed 0 --out $RUN_DIR/wb_diag.json

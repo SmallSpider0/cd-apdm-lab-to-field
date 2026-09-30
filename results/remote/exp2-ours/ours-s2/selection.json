@@ -1,0 +1,8 @@
+{
+  "best_source_val": {
+    "src_top1": 98.64285714285714,
+    "epoch": 63
+  },
+  "last_epoch": 100,
+  "train_ablation": "full"
+}

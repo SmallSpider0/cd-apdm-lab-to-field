@@ -1,0 +1,4 @@
+{"run_id": "exp3/wo_ciwlm-s2", "queue": "exp3", "repo_commit": "ceab726",
+ "command": "$PY -m src.train --config configs/cd_apdm.yaml --seed 2 --ablation w/o-CIWLM && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-24T00:41:08+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

@@ -1,0 +1,91 @@
+# 本机冒烟配置 —— 只验证接线正确，不产出任何可用于论文的数字。
+#
+# 背景：M4 / 16 GB 统一内存，CPU 与 GPU 共享。完整推理流水线会同时驻留
+# ResNet-50 学生 + 教师深拷贝 + CC-GANM 生成器与判别器，在 MPS 上极易吃满内存。
+# 本配置把所有迭代数压到最小，单次运行应在数分钟内结束。
+#
+#   python -m src.train     --config configs/local_smoke.yaml --max_train_batches 4
+#   python -m src.inference --config configs/local_smoke.yaml --checkpoint <ckpt>
+#
+# 正式实验一律在服务器，见 WORKSPACE.md。
+
+seed: 42
+device: auto
+
+data:
+  source_split: plantvillage_lt_source.csv
+  target_split: plantdoc_target.csv
+  num_classes: 28
+  image_size: 224
+  num_workers: 0          # MPS 下多进程 worker 易泄漏信号量
+
+train:
+  batch_size: 8           # 16 GB 统一内存的安全上限
+  epochs: 1
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0005
+  backbone_lr_mult: 0.1   # 与 cd_apdm.yaml 一致（决策记录 4）
+  scheduler: cosine
+  warmup_epochs: 0
+  amp: false              # MPS 的 autocast 支持不完整
+  checkpoint_dir: checkpoints/local_smoke
+  log_every: 2
+
+mdiwm:
+  alpha: 0.7
+  beta: 0.3
+  mc_dropout_p: 0.2
+  mc_passes: 2            # 正式为 10
+  head_threshold: 100
+  tail_threshold: 101
+  min_tail_ratio: 0.15
+  domain_classifier_pretrain_epochs: 1
+  domain_classifier_samples: 32
+
+ciwlm:
+  beta_e: 0.999
+  focal_gamma: 2.0
+  init_temperature: 1.2
+  learnable_temperature: true
+
+tfem:
+  enabled: false          # 主基准无可信时间戳，见 dataset/AgriNet/ALIGNMENT.md
+  strict: true
+  window_days: 7
+  lstm_hidden: 128
+  lstm_layers: 1
+  forward_fill_max_gap: 6
+  feature_columns: [temp_7d_mean, temp_7d_max, temp_7d_min, temp_7d_std, temp_cusum,
+                    humidity_7d_mean, humidity_7d_max, humidity_7d_min, humidity_7d_std,
+                    soil_moisture_7d_mean, soil_moisture_7d_max, soil_moisture_7d_min,
+                    soil_moisture_7d_std, precip_7d_total]
+  event_columns: [fertilization_event, extreme_weather_event]
+
+mhsa: {num_heads: 4, dropout: 0.1}
+
+cc_ganm:
+  enabled: false          # GAN 训练是本机内存的主要来源，冒烟时默认关闭
+  hidden_dim: 32
+  cycle_weight: 10.0
+  adv_weight: 1.0
+  num_iters: 5
+
+ss_plam:
+  enabled: true
+  iters: 5                # 正式为 300
+  mean_teacher_iters: 5   # 正式为 300
+  contrastive_temp: 0.1
+  rotation_weight: 0.5
+  contrastive_weight: 0.5
+  teacher_tau: 0.99
+  pseudo_conf_threshold: 0.7
+
+logit_adjust: {tau: 0.5}
+
+acrm:
+  eta: 0.95
+  tau_base: 0.7
+  lambda_acc: 0.15
+  lambda_ent: 0.10
+  gamma_boost: 0.08

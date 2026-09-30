@@ -1,0 +1,4 @@
+{"run_id": "exp2/cotta-s4", "queue": "exp2", "repo_commit": "ceab726",
+ "command": "$PY -m src.baselines.run --method cotta --seed 4 --num_workers 6 --init_from $RUN_DIR/../source_only-s4", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-25T15:02:29+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

@@ -1,0 +1,194 @@
+{
+ "adabn": false,
+ "source_val_acc": 0.9857142857142858,
+ "target_dev_true_acc": 0.19309462915601022,
+ "AC": 0.6063723564147949,
+ "DoC": 0.6248895219394139,
+ "ATC_maxconf": 0.48721227621483376,
+ "ATC_negent": 0.41687979539641945,
+ "per_class": [
+  {
+   "class": 0,
+   "n_pred_target": 9,
+   "est_precision": 0.1111111111111111,
+   "est_precision_global_t": 0.2222222222222222,
+   "true_precision": 0.2222222222222222
+  },
+  {
+   "class": 1,
+   "n_pred_target": 7,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.0
+  },
+  {
+   "class": 3,
+   "n_pred_target": 166,
+   "est_precision": 0.35542168674698793,
+   "est_precision_global_t": 0.46987951807228917,
+   "true_precision": 0.1566265060240964
+  },
+  {
+   "class": 4,
+   "n_pred_target": 27,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.14814814814814814,
+   "true_precision": 0.6296296296296297
+  },
+  {
+   "class": 5,
+   "n_pred_target": 66,
+   "est_precision": 0.18181818181818182,
+   "est_precision_global_t": 0.3484848484848485,
+   "true_precision": 0.3181818181818182
+  },
+  {
+   "class": 6,
+   "n_pred_target": 12,
+   "est_precision": 0.3333333333333333,
+   "est_precision_global_t": 0.5,
+   "true_precision": 0.0
+  },
+  {
+   "class": 7,
+   "n_pred_target": 18,
+   "est_precision": 0.5,
+   "est_precision_global_t": 0.16666666666666666,
+   "true_precision": 0.3333333333333333
+  },
+  {
+   "class": 8,
+   "n_pred_target": 5,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.0
+  },
+  {
+   "class": 9,
+   "n_pred_target": 10,
+   "est_precision": 0.1,
+   "est_precision_global_t": 0.1,
+   "true_precision": 0.2
+  },
+  {
+   "class": 10,
+   "n_pred_target": 8,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.0,
+   "true_precision": 0.0
+  },
+  {
+   "class": 11,
+   "n_pred_target": 20,
+   "est_precision": 0.0,
+   "est_precision_global_t": 0.1,
+   "true_precision": 0.55
+  },
+  {
+   "class": 12,
+   "n_pred_target": 139,
+   "est_precision": 0.2517985611510791,
+   "est_precision_global_t": 0.5035971223021583,
+   "true_precision": 0.07194244604316546
+  },
+  {
+   "class": 13,
+   "n_pred_target": 27,
+   "est_precision": 0.25925925925925924,
+   "est_precision_global_t": 0.25925925925925924,
+   "true_precision": 0.2222222222222222
+  },
+  {
+   "class": 14,
+   "n_pred_target": 6,
+   "est_precision": 0.5,
+   "est_precision_global_t": 0.6666666666666666,
+   "true_precision": 0.5
+  },
+  {
+   "class": 15,
+   "n_pred_target": 86,
+   "est_precision": 0.5,
+   "est_precision_global_t": 0.5116279069767442,
+   "true_precision": 0.12790697674418605
+  },
+  {
+   "class": 16,
+   "n_pred_target": 49,
+   "est_precision": 0.7142857142857143,
+   "est_precision_global_t": 0.46938775510204084,
+   "true_precision": 0.04081632653061224
+  },
+  {
+   "class": 17,
+   "n_pred_target": 16,
+   "est_precision": 0.125,
+   "est_precision_global_t": 0.375,
+   "true_precision": 0.25
+  },
+  {
+   "class": 18,
+   "n_pred_target": 7,
+   "est_precision": 0.2857142857142857,
+   "est_precision_global_t": 0.14285714285714285,
+   "true_precision": 0.42857142857142855
+  },
+  {
+   "class": 20,
+   "n_pred_target": 10,
+   "est_precision": 0.4,
+   "est_precision_global_t": 0.1,
+   "true_precision": 0.5
+  },
+  {
+   "class": 21,
+   "n_pred_target": 59,
+   "est_precision": 0.5423728813559322,
+   "est_precision_global_t": 0.6949152542372882,
+   "true_precision": 0.22033898305084745
+  },
+  {
+   "class": 23,
+   "n_pred_target": 10,
+   "est_precision": 0.2,
+   "est_precision_global_t": 0.2,
+   "true_precision": 0.3
+  },
+  {
+   "class": 24,
+   "n_pred_target": 8,
+   "est_precision": 0.375,
+   "est_precision_global_t": 0.5,
+   "true_precision": 0.0
+  },
+  {
+   "class": 25,
+   "n_pred_target": 5,
+   "est_precision": 0.8,
+   "est_precision_global_t": 0.4,
+   "true_precision": 0.6
+  }
+ ],
+ "per_class_spearman": 0.13243379964612995,
+ "per_class_mean_abs_err": 0.2110107027019723,
+ "selected_pseudo_labels": [
+  {
+   "conf_threshold": 0.5,
+   "coverage": 0.5869565217391305,
+   "est_precision": 0.5947712418300654,
+   "true_precision": 0.21350762527233116
+  },
+  {
+   "conf_threshold": 0.7,
+   "coverage": 0.3976982097186701,
+   "est_precision": 0.7909967845659164,
+   "true_precision": 0.2347266881028939
+  },
+  {
+   "conf_threshold": 0.9,
+   "coverage": 0.1969309462915601,
+   "est_precision": 0.935064935064935,
+   "true_precision": 0.2532467532467532
+  }
+ ]
+}

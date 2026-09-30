@@ -1,0 +1,89 @@
+# 服务器端到端冒烟：2 epoch、各阶段 20 iter，**所有模块保持开启**。
+# 目的是验证接线与显存，不产出任何可用于论文的数字。
+# 真实实验用 configs/cd_apdm.yaml。
+seed: 42
+device: auto
+data:
+  source_split: plantvillage_lt_source.csv
+  target_split: plantdoc_target.csv
+  num_classes: 28
+  image_size: 224
+  num_workers: 8
+train:
+  batch_size: 64
+  epochs: 2
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0005
+  backbone_lr_mult: 0.1   # 与 cd_apdm.yaml 一致（决策记录 4）
+  scheduler: cosine
+  warmup_epochs: 5
+  amp: true
+  checkpoint_dir: checkpoints/server_smoke
+  log_every: 50
+mdiwm:
+  alpha: 0.7
+  beta: 0.3
+  mc_dropout_p: 0.2
+  mc_passes: 10
+  head_threshold: 500
+  tail_threshold: 100
+  min_tail_ratio: 0.15
+  domain_classifier_pretrain_epochs: 3
+  domain_classifier_samples: 512
+ciwlm:
+  beta_e: 0.999
+  focal_gamma: 2.0
+  init_temperature: 1.2
+  learnable_temperature: true
+tfem:
+  enabled: false
+  strict: true
+  window_days: 7
+  feature_columns:
+  - temp_7d_mean
+  - temp_7d_max
+  - temp_7d_min
+  - temp_7d_std
+  - temp_cusum
+  - humidity_7d_mean
+  - humidity_7d_max
+  - humidity_7d_min
+  - humidity_7d_std
+  - soil_moisture_7d_mean
+  - soil_moisture_7d_max
+  - soil_moisture_7d_min
+  - soil_moisture_7d_std
+  - precip_7d_total
+  event_columns:
+  - fertilization_event
+  - extreme_weather_event
+  lstm_hidden: 128
+  lstm_layers: 1
+  forward_fill_max_gap: 6
+mhsa:
+  num_heads: 4
+  dropout: 0.1
+cc_ganm:
+  enabled: true
+  hidden_dim: 64
+  cycle_weight: 10.0
+  adv_weight: 1.0
+  num_iters: 20
+ss_plam:
+  enabled: true
+  iters: 20
+  mean_teacher_iters: 20
+  contrastive_temp: 0.1
+  rotation_weight: 0.5
+  contrastive_weight: 0.5
+  teacher_tau: 0.99
+  pseudo_conf_threshold: 0.7
+logit_adjust:
+  tau: 0.5
+acrm:
+  eta: 0.95
+  tau_base: 0.7
+  lambda_acc: 0.15
+  lambda_ent: 0.1
+  gamma_boost: 0.08

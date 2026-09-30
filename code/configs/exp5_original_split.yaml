@@ -1,0 +1,122 @@
+# EXP-5（rebuild-cross-domain-benchmark 5.4）：与 cd_apdm.yaml 只差源域划分文件 —— 使用任务 5 修复前（提交 f06c00b）的比例划分，其验证集 2,372 张中 49 张与训练集同叶片。
+# 由 cd_apdm.yaml 生成：sed 's/source_split: plantvillage_lt_source.csv/source_split: plantvillage_lt_source_f06c00b.csv/'
+seed: 42
+device: auto
+
+# 基准：PlantVillage-LT(IF=500) → PlantDoc
+# 决议见 plan/基准方案决策简报.md（A-1 修正版 + T-2，2026-09-20）
+# 划分由 dataset/splits/*.csv 决定；图像位于 $AGRI_WORKSPACE/data（仓库外）
+data:
+  # 数据集根目录不再写死 —— 由 splits.py 从 $AGRI_WORKSPACE 解析
+  source_split: plantvillage_lt_source_f06c00b.csv
+  target_split: plantdoc_target.csv
+  num_classes: 28          # 源域与目标域共享的可映射类别数（实测 28 对）
+  image_size: 224
+  num_workers: 6   # 225 容器仅 7 核（2026-09-22）
+  # 合成数据回退已移除。图像缺失时 SplitFileDataset 直接抛错 ——
+  # 静默回退到合成数据会产出看似正常、实则无意义的结果
+  # （checkpoints/smoke/ 下 top1: 0.0 的产物即由此而来）。
+
+train:
+  batch_size: 64
+  epochs: 100
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0005
+  # 预训练骨干的学习率倍率（判别式微调）。2026-09-21 作者决策：原设定 1.0（全量 Adam 1e-3）
+  # 使源模型对实验室图像过拟合，改为领域通行的 0.1，全部 ResNet-50 方法共用。
+  # 取自文献默认值，未在目标域上搜索；诊断见 results/exp-2-diag-s0.json
+  backbone_lr_mult: 0.1
+  scheduler: cosine
+  warmup_epochs: 5
+  amp: true
+  checkpoint_dir: checkpoints
+  log_every: 50
+
+# Module hyper-parameters
+mdiwm:
+  alpha: 0.7        # domain weight
+  beta: 0.3         # uncertainty weight
+  mc_dropout_p: 0.2
+  mc_passes: 10
+  # 头/尾判定不再用阈值，改由划分文件中的 OLTR 分桶决定
+  # （Many >100 / Medium 20-100 / Few <20；Tail = Medium ∪ Few）
+  # 以下两项保留仅为兼容旧版 image_dataset.py
+  head_threshold: 500
+  tail_threshold: 100
+  min_tail_ratio: 0.15
+  domain_classifier_pretrain_epochs: 3
+
+ciwlm:
+  beta_e: 0.999
+  focal_gamma: 2.0
+  init_temperature: 1.2
+  learnable_temperature: true
+
+tfem:
+  # 主基准默认关闭。PlantVillage 与 PlantDoc 均无可信的采集时间戳与地块标识，
+  # 无法诚实地配对时序数据（审稿意见 R2-2）。T-2 决议：TFEM 降级为
+  # 「模拟传感器基准上的可行性演示」，在独立的受控实验中评估，不进主基准。
+  enabled: false
+  strict: true      # 对齐失败即抛错，不得静默返回零向量
+  window_days: 7
+  feature_columns:
+    - temp_7d_mean
+    - temp_7d_max
+    - temp_7d_min
+    - temp_7d_std
+    - temp_cusum
+    - humidity_7d_mean
+    - humidity_7d_max
+    - humidity_7d_min
+    - humidity_7d_std
+    - soil_moisture_7d_mean
+    - soil_moisture_7d_max
+    - soil_moisture_7d_min
+    - soil_moisture_7d_std
+    - precip_7d_total
+  event_columns:
+    - fertilization_event
+    - extreme_weather_event
+  lstm_hidden: 128
+  lstm_layers: 1
+  forward_fill_max_gap: 6
+
+mhsa:
+  num_heads: 4
+  dropout: 0.1
+
+# ---- 推理期定稿配置（revise-cdapdm-method 决策，作者 2026-09-23 确认）----
+# 开发集结论：伪标签自训练（CC-GANM / SS-PLAM / Mean-Teacher）在实验室→田间偏移下均有害（results/exp-dev-ledger.md）。
+# 定稿流程 = AdaBN + logit 调整（τ=0.5）+ ACRM 尾类重标定（γ_boost=0.005）；ACRM 逐类阈值不再参与。
+# 三个被关闭的组件保留实现，仅在 EXP-4 中以 --set 打开，作为负面结果报告。
+cc_ganm:
+  enabled: false        # 定稿关闭（原 true）；EXP-4 负面组件 +CC-GANM
+  # 迭代数由此处决定；命令行 --ccgan_iters 仅用于临时覆盖
+  # （此前该键从不被读取，实际用的是命令行硬编码的 200）
+  hidden_dim: 64
+  cycle_weight: 10.0
+  adv_weight: 1.0
+  num_iters: 1000
+
+ss_plam:
+  enabled: true
+  adapt_mode: adabn     # 定稿：只做 AdaBN（mean_teacher | adabn | adabn_mt | none）；原默认 mean_teacher
+  iters: 300               # 自监督预训练迭代数（原 --ssplam_iters 硬编码 300）
+  mean_teacher_iters: 300  # Mean-Teacher 更新迭代数（原 --mt_iters 硬编码 300）
+  contrastive_temp: 0.1
+  rotation_weight: 0.5
+  contrastive_weight: 0.5
+  teacher_tau: 0.99
+  pseudo_conf_threshold: 0.7
+  # warmup_iters 已移除 —— 代码中从无对应实现，留在配置里只会误导
+
+logit_adjust:
+  tau: 0.5            # τ in the formulation
+
+acrm:
+  eta: 0.95           # EMA momentum
+  tau_base: 0.7
+  lambda_acc: 0.15
+  lambda_ent: 0.10
+  gamma_boost: 0.005   # 定稿：开发集 γ 扫描选出（原 0.08 在 IF≈482 下对 few 类放大约 39 倍）

@@ -1,0 +1,4 @@
+{"run_id": "exp2/flexmatch-s2", "queue": "exp2", "repo_commit": "ceab726",
+ "command": "$PY -m src.baselines.run --method flexmatch --seed 2 --num_workers 6", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-24T18:30:46+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

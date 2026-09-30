@@ -1,0 +1,7 @@
+# EXP-2 CD-APDM：6 seeds，训练 + 两种选型规则各一次推理（bestval 主结果 / final 附录）
+ours-s0	$PY -m src.train --config configs/cd_apdm.yaml --seed 0 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done
+ours-s1	$PY -m src.train --config configs/cd_apdm.yaml --seed 1 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 1 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done
+ours-s2	$PY -m src.train --config configs/cd_apdm.yaml --seed 2 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done
+ours-s3	$PY -m src.train --config configs/cd_apdm.yaml --seed 3 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done
+ours-s4	$PY -m src.train --config configs/cd_apdm.yaml --seed 4 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 4 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done
+ours-s5	$PY -m src.train --config configs/cd_apdm.yaml --seed 5 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 5 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done

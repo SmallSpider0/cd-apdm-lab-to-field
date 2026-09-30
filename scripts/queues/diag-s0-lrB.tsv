@@ -1,0 +1,4 @@
+raw_vs_la	cd /root/agri/repo-dev/code && $PY -m tools.diagnose_adaptation --config configs/cd_apdm.yaml --checkpoint /root/agri/runs/exp2/ours-s0/cd_apdm_bestval.pt
+wo-CC-GANM	cd /root/agri/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --ablation w/o-CC-GANM --checkpoint /root/agri/runs/exp2/ours-s0/cd_apdm_bestval.pt
+wo-SS-PLAM	cd /root/agri/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --ablation w/o-SS-PLAM --checkpoint /root/agri/runs/exp2/ours-s0/cd_apdm_bestval.pt
+wo-ACRM	cd /root/agri/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --ablation w/o-ACRM --checkpoint /root/agri/runs/exp2/ours-s0/cd_apdm_bestval.pt

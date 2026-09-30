@@ -1,0 +1,8 @@
+{
+  "best_source_val": {
+    "src_top1": 98.35714285714286,
+    "epoch": 80
+  },
+  "last_epoch": 100,
+  "train_ablation": "w/o-MDIWM"
+}

@@ -1,0 +1,8 @@
+# 收尾 GPU 批（revise-cdapdm-method 9.3、9.4；rebuild-cross-domain-benchmark 5.4）。代码快照 repo-final（sync-code.sh repo-final）。
+# cost：Table 9 计算开销实测；figdata：Figs 2–3 的 Grad-CAM 与 t-SNE 特征（seed 0，绘图在本机）；
+# exp5：在修复前的比例划分上训练 source_only（3 seed），导出源域验证逐图预测，离线比较泄漏验证图与其余验证图。
+cost	cd $AGRI_WORKSPACE/repo-final/code && $PY -m tools.compute_cost --ours $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --out $RUN_DIR/cost.json
+figdata-s0	cd $AGRI_WORKSPACE/repo-final/code && $PY -m tools.figure_data --ours $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --baseline $AGRI_RUNS/exp2/source_only-s0 --ours_probs $AGRI_RUNS/exp2-ours/ours-s0/bestval/probs_full.npz --baseline_probs $AGRI_RUNS/exp2/source_only-s0/probs_bestval.npz --out $RUN_DIR/figdata.npz
+exp5-s0	cd $AGRI_WORKSPACE/repo-final/code && $PY -m src.baselines.run --method source_only --seed 0 --base configs/exp5_original_split.yaml --num_workers 6 --out $RUN_DIR && $PY -m tools.predict_source_val --run_dir $RUN_DIR --config configs/exp5_original_split.yaml --out $RUN_DIR/src_val_pred.npz
+exp5-s1	cd $AGRI_WORKSPACE/repo-final/code && $PY -m src.baselines.run --method source_only --seed 1 --base configs/exp5_original_split.yaml --num_workers 6 --out $RUN_DIR && $PY -m tools.predict_source_val --run_dir $RUN_DIR --config configs/exp5_original_split.yaml --out $RUN_DIR/src_val_pred.npz
+exp5-s2	cd $AGRI_WORKSPACE/repo-final/code && $PY -m src.baselines.run --method source_only --seed 2 --base configs/exp5_original_split.yaml --num_workers 6 --out $RUN_DIR && $PY -m tools.predict_source_val --run_dir $RUN_DIR --config configs/exp5_original_split.yaml --out $RUN_DIR/src_val_pred.npz

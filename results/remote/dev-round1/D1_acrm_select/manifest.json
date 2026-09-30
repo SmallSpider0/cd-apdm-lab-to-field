@@ -1,0 +1,4 @@
+{"run_id": "dev-round1/D1_acrm_select", "queue": "dev-round1", "repo_commit": "7994e67",
+ "command": "cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.pseudo_selection=acrm", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-22T11:44:27+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

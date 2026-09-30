@@ -1,0 +1,4 @@
+{"run_id": "dev-round2/R2f_adabn_g0002", "queue": "dev-round2", "repo_commit": "e897c20",
+ "command": "cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.adapt_mode=adabn --set acrm.gamma_boost=0.002", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-22T12:11:13+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

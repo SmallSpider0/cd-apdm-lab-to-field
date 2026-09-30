@@ -1,0 +1,4 @@
+{"run_id": "exp2/ours-s0", "queue": "exp2", "repo_commit": "b5e18f2",
+ "command": "$PY -m src.train --config configs/cd_apdm.yaml --seed 0 && for ck in bestval final; do RUN_DIR=$RUN_DIR/$ck $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $RUN_DIR/cd_apdm_$ck.pt || exit 1; done", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-21T17:46:02+08:00", "host": "3a4eda741e1f",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

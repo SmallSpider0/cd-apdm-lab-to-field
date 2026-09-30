@@ -1,0 +1,4 @@
+{"run_id": "exp2-adabn/focal-s0", "queue": "exp2-adabn", "repo_commit": "ceab726",
+ "command": "for ck in bestval final; do $PY -m tools.baseline_adabn --run_dir $AGRI_RUNS/exp2/focal-s0 --ckpt $ck --out $RUN_DIR/$ck.npz || exit 1; done", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-26T16:17:47+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

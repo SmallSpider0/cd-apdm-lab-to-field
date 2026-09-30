@@ -1,0 +1,43 @@
+{
+  "method": "dann",
+  "seed": 0,
+  "smoke": false,
+  "usable_for_paper": true,
+  "selection": {
+    "final": {
+      "epoch": 100,
+      "tgt": {
+        "top1": 20.1091192517537,
+        "tail_recall": 2.678617584129006,
+        "macro_f1": 16.38664481045852,
+        "ece": 0.7933735210079749
+      },
+      "src_val": {
+        "top1": 97.92857142857143,
+        "tail_recall": 97.0,
+        "macro_f1": 97.92833985621436,
+        "ece": 0.011782532717500387
+      }
+    },
+    "best_source_val": {
+      "epoch": 80,
+      "tgt": {
+        "top1": 20.14809041309431,
+        "tail_recall": 3.0246525498394283,
+        "macro_f1": 16.471081459254645,
+        "ece": 0.7855412399661977
+      },
+      "src_val": {
+        "top1": 98.28571428571429,
+        "tail_recall": 97.8,
+        "macro_f1": 98.28203244842355,
+        "ece": 0.00773944454533716
+      }
+    }
+  },
+  "hyperparameters": {
+    "disc_hidden": 1024,
+    "trade_off": 1.0
+  },
+  "wall_clock_s": 8163.1
+}

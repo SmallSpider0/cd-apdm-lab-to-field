@@ -1,0 +1,45 @@
+{
+  "method": "flexmatch",
+  "seed": 0,
+  "smoke": false,
+  "usable_for_paper": true,
+  "selection": {
+    "final": {
+      "epoch": 100,
+      "tgt": {
+        "top1": 24.27903351519875,
+        "tail_recall": 11.560908011703015,
+        "macro_f1": 16.38078508822182,
+        "ece": 0.7571025553013511
+      },
+      "src_val": {
+        "top1": 98.28571428571429,
+        "tail_recall": 97.6,
+        "macro_f1": 98.27313147978394,
+        "ece": 0.0081749734282494
+      }
+    },
+    "best_source_val": {
+      "epoch": 82,
+      "tgt": {
+        "top1": 24.27903351519875,
+        "tail_recall": 11.560908011703015,
+        "macro_f1": 16.38078508822182,
+        "ece": 0.7572149911478732
+      },
+      "src_val": {
+        "top1": 98.42857142857143,
+        "tail_recall": 98.2,
+        "macro_f1": 98.42405076954854,
+        "ece": 0.009028701377766504
+      }
+    }
+  },
+  "hyperparameters": {
+    "p_cutoff": 0.95,
+    "thresh_warmup": true,
+    "lambda_u": 1.0,
+    "uratio": 1
+  },
+  "wall_clock_s": 10750.2
+}

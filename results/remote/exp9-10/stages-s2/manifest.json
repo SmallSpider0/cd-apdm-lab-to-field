@@ -1,0 +1,4 @@
+{"run_id": "exp9-10/stages-s2", "queue": "exp9-10", "repo_commit": "2659ee4",
+ "command": "cd $AGRI_WORKSPACE/repo-exp910/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 2 --dump_stages --checkpoint $AGRI_RUNS/exp2-ours/ours-s2/cd_apdm_bestval.pt --set cc_ganm.enabled=true --set ss_plam.adapt_mode=mean_teacher --set acrm.gamma_boost=0.08", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-26T16:39:20+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

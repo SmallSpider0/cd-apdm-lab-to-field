@@ -1,0 +1,4 @@
+{"run_id": "exp2/source_only-s0", "queue": "exp2", "repo_commit": "f8fad5e",
+ "command": "$PY -m src.baselines.run --method source_only --seed 0 --num_workers 8", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-21T19:02:40+08:00", "host": "3a4eda741e1f",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

@@ -1,0 +1,90 @@
+seed: 0
+device: cpu
+
+data:
+  source_root: ../dataset/plantvillage
+  target_root: ../dataset/ip102
+  agrinet_window_csv: ../dataset/AgriNet/AgriNet_sliding_window_7d.csv
+  agrinet_align_csv: ../dataset/AgriNet/AgriNet_image_alignment.csv
+  num_classes: 6
+  image_size: 32
+  num_workers: 0
+  use_synthetic_when_missing: true
+  synthetic:
+    n_source_per_class: [40, 4]
+    n_target_per_class: [16, 2]
+    long_tail_imb_factor: 10
+
+train:
+  batch_size: 8
+  epochs: 1
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0005
+  backbone_lr_mult: 0.1   # 与 cd_apdm.yaml 一致（决策记录 4）
+  scheduler: cosine
+  warmup_epochs: 0
+  amp: false
+  checkpoint_dir: checkpoints/smoke
+  log_every: 10
+
+mdiwm:
+  alpha: 0.7
+  beta: 0.3
+  mc_dropout_p: 0.2
+  mc_passes: 2
+  head_threshold: 20
+  tail_threshold: 8
+  min_tail_ratio: 0.2
+  domain_classifier_pretrain_epochs: 1
+
+ciwlm:
+  beta_e: 0.999
+  focal_gamma: 2.0
+  init_temperature: 1.2
+  learnable_temperature: true
+
+tfem:
+  window_days: 7
+  feature_columns:
+    - temp_7d_mean
+    - temp_7d_std
+    - humidity_7d_mean
+    - soil_moisture_7d_mean
+    - precip_7d_total
+  event_columns:
+    - fertilization_event
+    - extreme_weather_event
+  lstm_hidden: 32
+  lstm_layers: 1
+  forward_fill_max_gap: 6
+
+mhsa:
+  num_heads: 2
+  dropout: 0.0
+
+cc_ganm:
+  enabled: true
+  hidden_dim: 16
+  cycle_weight: 10.0
+  adv_weight: 1.0
+  num_iters: 5
+
+ss_plam:
+  enabled: true
+  contrastive_temp: 0.1
+  rotation_weight: 0.5
+  contrastive_weight: 0.5
+  teacher_tau: 0.99
+  pseudo_conf_threshold: 0.3
+  warmup_iters: 5
+
+logit_adjust:
+  tau: 0.5
+
+acrm:
+  eta: 0.95
+  tau_base: 0.7
+  lambda_acc: 0.15
+  lambda_ent: 0.10
+  gamma_boost: 0.08

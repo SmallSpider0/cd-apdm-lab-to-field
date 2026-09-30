@@ -1,0 +1,87 @@
+{
+  "threshold_bits": 256,
+  "threshold_hamming": 16,
+  "source": {
+    "images": 24888,
+    "grouped_images": 537,
+    "groups": 192,
+    "groups_from_near_dup_only": 3,
+    "groups_with_leaf_id": 189,
+    "images_with_leaf_id": 1676,
+    "leaf_id_coverage_pct": 6.73,
+    "straddling_groups_repaired": 0,
+    "images_moved_to_train": 0,
+    "split_counts_after": {
+      "val": 1400,
+      "train": 23488
+    }
+  },
+  "target": {
+    "images": 2566,
+    "grouped_images": 137,
+    "groups": 67,
+    "label_conflict_groups": 32,
+    "label_conflict_images": 66,
+    "unavoidable_errors": 33,
+    "accuracy_ceiling_pct": 98.71
+  },
+  "target_label_usage": {
+    "task": "5.3 声明目标域标注的用途边界",
+    "manuscript_claim": "正文两处声称使用目标域训练集 10% 的标注进行自适应（paper_v0 纯文本第 603 行、第 1102–1103 行）",
+    "implementation_audit": {
+      "supervised_loss_on_target_labels": "无 —— 全仓库无任何以目标域真实标签计算的分类损失",
+      "target_data_in_training": [
+        "code/src/train.py 域分类器 —— 只用域身份（源/目标），数据经 StripLabels，不读类别标签",
+        "code/src/inference.py CC-GANM —— 目标域图像用于风格迁移，类别条件取源域模型伪标签",
+        "code/src/modules/ss_plam.py 伪标签 —— 由模型自身预测产生，不读真实标签"
+      ],
+      "target_labels_in_model_selection": "无 —— train.py 按源域验证集 Top-1 保存 cd_apdm_bestval.pt（主结果），另存 cd_apdm_final.pt（附录）。**更正**：此前该字段称“选型用源域验证集”，但当时 train.py 实际只保存最后一个 epoch，并无选型逻辑；2026-09-21 补上。",
+      "target_labels_in_evaluation": "是 —— 仅用于计算上报指标，code/src/train.py:305",
+      "target_labels_as_conditioning": "**有过，已改正（2026-09-21）**：code/src/inference.py 的 cc_ganm_train 曾以目标域真实标签 tgt_b['label'] 作为 G_T2S 的类别条件，并经循环一致损失进入 G_S2T 的训练；G_S2T 随后为 Mean-Teacher 生成学生输入。这不是监督损失，但属目标域标签泄漏。已改为源域模型的伪标签，目标域自适应数据经 StripLabels 去掉 label 字段；回归测试 tests/test_baselines.py::test_ccganm_adaptation_never_reads_target_labels （改回旧写法即失败）。此前的 grep 核查只搜了损失相关写法，漏掉了这一处。"
+    },
+    "conclusion": "修复 CC-GANM 条件标签后，实际协议是**完全无监督**的域自适应：目标域标注 0% 进入训练与生成器条件、0% 进入选型，仅用于评测。修复前的结果（含服务器冒烟）不满足这一点，均不得使用。稿件「10% 标注用于自适应」的表述须改写。",
+    "verification": "grep -rn --include='*.py' -E \"tgt.*\\[.label.\\]|batch\\[.label.\\]\" code/src/ 并逐处确认只出现在评测路径；结构保证见 StripLabels"
+  },
+  "source_before_repair": {
+    "val_total": 1400,
+    "val_contaminated": 0,
+    "val_contaminated_pct": 0.0,
+    "by_class": {},
+    "caught_by_phash_alone": 3,
+    "note": "感知哈希单独使用时只能捕获上述污染样本中的 3 例（均与训练图字节相同）；其余 46 例为同一枚叶片在不同日期/角度下的照片，外观差异大，哈希判为不同。两种分组必须并用。（2026-09-28 更正：原记录为 0，系 exp5_apply_groups.py 在修复之后统计所致；3 由修复前划分 plantvillage_lt_source_f06c00b.csv 逐图 sha256 比对复核。）"
+  },
+  "original_proportional_split": {
+    "split_commit": "f06c00b",
+    "construction": "LT 保留集按 10% 比例切分（任务 5 修复前）",
+    "val_total": 2372,
+    "val_contaminated": 49,
+    "val_contaminated_pct": 2.07,
+    "by_class": {
+      "Tomato___Late_blight": {
+        "val": 191,
+        "contaminated": 36,
+        "pct": 18.8
+      },
+      "Tomato___healthy": {
+        "val": 85,
+        "contaminated": 13,
+        "pct": 15.3
+      }
+    },
+    "caught_by_phash_alone": 3,
+    "note": "感知哈希单独使用时只能捕获上述污染样本中的 3 例；其余为同一枚叶片在不同日期/角度下的照片，外观差异大，哈希判为不同。两种分组必须并用。"
+  },
+  "leaf_id_coverage": {
+    "plantvillage_lt": {
+      "images": 23688,
+      "with_leaf_id": 1660,
+      "pct": 7.01
+    },
+    "source_split_incl_balanced_val": {
+      "images": 24888,
+      "with_leaf_id": 1676,
+      "pct": 6.73
+    },
+    "note": "稿件引用 plantvillage_lt 口径（1,660 / 23,688 = 7.01%）；source.images_with_leaf_id 与 leaf_id_coverage_pct 按现行划分文件全部 24,888 行计。"
+  }
+}

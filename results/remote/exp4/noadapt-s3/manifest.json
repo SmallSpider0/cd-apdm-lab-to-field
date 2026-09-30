@@ -1,0 +1,4 @@
+{"run_id": "exp4/noadapt-s3", "queue": "exp4", "repo_commit": "777cd5d",
+ "command": "$PY -m src.inference --config configs/cd_apdm.yaml --seed 3 --checkpoint $AGRI_RUNS/exp2-ours/ours-s3/cd_apdm_bestval.pt --set ss_plam.adapt_mode=none", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-23T19:02:28+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

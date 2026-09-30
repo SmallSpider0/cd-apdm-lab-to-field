@@ -1,0 +1,4 @@
+{"run_id": "exp9-10/atc_source-s5", "queue": "exp9-10", "repo_commit": "2659ee4",
+ "command": "cd $AGRI_WORKSPACE/repo-exp910/code && $PY -m tools.atc_estimate --config configs/cd_apdm.yaml --checkpoint $AGRI_RUNS/exp2-ours/ours-s5/cd_apdm_bestval.pt --out $RUN_DIR/atc.json --save_npz $RUN_DIR/atc.npz", "python": "/root/data1/xzc/agri_ai_conda/envs/agri-ctta-py311-cuda-of5-v5-r2/bin/python",
+ "started_at": "2026-09-26T16:53:33+08:00", "host": "d180d12aeb8b",
+ "gpu": "NVIDIA RTX A6000, 46068 MiB"}

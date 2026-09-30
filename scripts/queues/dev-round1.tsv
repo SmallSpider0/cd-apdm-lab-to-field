@@ -1,0 +1,4 @@
+D1_acrm_select	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.pseudo_selection=acrm
+D2_class_balanced	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.pseudo_selection=class_balanced --set ss_plam.cb_keep=0.5
+D3_diversity	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.diversity_weight=1.0
+D4_cb_diversity	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt --set ss_plam.pseudo_selection=class_balanced --set ss_plam.cb_keep=0.5 --set ss_plam.diversity_weight=1.0

@@ -1,0 +1,1 @@
+stages_full	cd $AGRI_WORKSPACE/repo-dev/code && $PY -m src.inference --config configs/cd_apdm.yaml --seed 0 --dump_stages --checkpoint $AGRI_RUNS/exp2-ours/ours-s0/cd_apdm_bestval.pt

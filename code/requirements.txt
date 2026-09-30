@@ -1,0 +1,7 @@
+torch>=1.13
+torchvision>=0.14
+numpy>=1.23
+pandas>=1.5     # optional: only needed when tfem.enabled is true
+Pillow>=9.4
+PyYAML>=6.0
+tqdm>=4.65      # optional: progress bars only
